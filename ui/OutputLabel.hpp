@@ -10,6 +10,7 @@
 
 #include "program/Processor.hpp"
 #include "program/shape/Shape.hpp"
+#include "program/shape/ShapeContainer.hpp"
 #include "program/shape/ShapeType.hpp"
 
 namespace ui {
@@ -35,33 +36,24 @@ namespace ui {
 
         void clearShapes();
 
-        size_t numShapes() { return shapes.size(); }
+        size_t numShapes() { return shapes.numShapes(); }
 
         auto getParamPairs(size_t id) {
-            assert(id < numShapes());
             return shapes[id]->getParamPairs();
         }
 
-        void highlightPreviousShape();
+        void highlightPreviousShape() {shapes.highlightPreviousShape(); }
 
-        void highlightNextShape();
+        void highlightNextShape() {shapes.highlightNextShape();}
 
-        void fixCurrentShapeIdx() {
-            if (numShapes() == 0 || currentShapeIdx < 0)
-                currentShapeIdx = 0;
-            if (currentShapeIdx >= numShapes())
-                currentShapeIdx = numShapes() - 1;
-        }
     protected:
         void mousePressEvent(QMouseEvent *event) override;
 
     private:
-        void highlightCurrentShape();
         std::vector<cv::Point> points;
-        std::vector<std::unique_ptr<::program::shape::Shape>> shapes;
+        program::shape::ShapeContainer shapes;
         std::unique_ptr<::program::Processor> processor;
         cv::Mat oriMat;
-        size_t currentShapeIdx;
         bool toNearestContourPoint;
         bool showContours;
         bool showPoints;

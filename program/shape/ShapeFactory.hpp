@@ -16,42 +16,42 @@ namespace program::shape {
 
     class ShapeFactory {
     public:
-        static std::unique_ptr<Shape> build(ShapeType type, const std::vector<cv::Point>& points) {
+        static std::shared_ptr<Shape> build(ShapeType type, const std::vector<cv::Point>& points) {
             size_t n = points.size();
-            std::unique_ptr<Shape> shape = nullptr;
+            std::shared_ptr<Shape> shape = nullptr;
             switch(type) {
                 case ShapeType::Arc:
                     if (n >= 3) {
-                        shape = std::make_unique<Arc>(points[n -3], points[n - 2], points[n - 1]);
+                        shape = std::make_shared<Arc>(points[n -3], points[n - 2], points[n - 1]);
                     }
                     break;
                 case ShapeType::Circle:
                     if (n >= 3) {
-                        shape = std::make_unique<Circle>(points[n -3], points[n - 2], points[n - 1]);
+                        shape = std::make_shared<Circle>(points[n -3], points[n - 2], points[n - 1]);
                     }
                     break;
                 case ShapeType::InfiniteLine:
                     if (n >= 2) {
-                        shape = std::make_unique<InfiniteLine>( points[n - 2], points[n - 1]);
+                        shape = std::make_shared<InfiniteLine>( points[n - 2], points[n - 1]);
                     }
                     break;
                 case ShapeType::LineSegment:
                     if (n >= 2) {
-                        shape = std::make_unique<LineSegment>( points[n - 2], points[n - 1]);
+                        shape = std::make_shared<LineSegment>( points[n - 2], points[n - 1]);
                     }
                     break;
                 case ShapeType::Parallelogram:
                     if (n >= 4) {
-                        shape = std::make_unique<Parallelogram>( points[n-4], points[n-3],points[n - 2], points[n - 1]);
+                        shape = std::make_shared<Parallelogram>( points[n-4], points[n-3],points[n - 2], points[n - 1]);
                     }
                     break;
                 case ShapeType::Rectangle:
                     if (n >= 4) {
-                        shape = std::make_unique<Rectangle>( points[n-4], points[n-3],points[n - 2], points[n - 1]);
+                        shape = std::make_shared<Rectangle>( points[n-4], points[n-3],points[n - 2], points[n - 1]);
                     }
                     break;
             }
-            return std::move(shape);
+            return shape;
         }
     };
 

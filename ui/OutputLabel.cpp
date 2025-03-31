@@ -20,7 +20,7 @@ namespace {
 
 namespace ui {
     OutputLabel::OutputLabel(QWidget *widget)
-            : toNearestContourPoint(false), showContours(false), currentShapeIdx(0) {
+            : toNearestContourPoint(false), showContours(false) {
         setStyleSheet("background-color: lightblue");
     }
 
@@ -94,8 +94,7 @@ namespace ui {
             for (const cv::Point &point: points)
                 cv::circle(newFrame, point, 1, RED, 2);
         }
-        for (const auto &shape: shapes)
-            shape->draw(newFrame);
+        shapes.draw(newFrame);
         if (this->showContours)
             cv::drawContours(newFrame, processor->getContours(), -1, BLUE, 1);
         this->setPixmap(util::cvMatToQPixmap(newFrame));
@@ -111,10 +110,7 @@ namespace ui {
             QWARN("Latest several points cannot form a " + QString(shape->shapeName()));
             return false;
         }
-        shape->setColor(DEFAULT_COLOR);
-        shape->setThickness(DEFAULT_THICKNESS);
-        shapes.push_back(std::move(shape));
-        highlightNextShape();
+        shapes.addShape(shape);
         return true;
     }
 
@@ -124,46 +120,11 @@ namespace ui {
     }
 
     void OutputLabel::removeCurrentShape() {
-        if (!shapes.empty()) {
-            shapes.pop_back();
-            fixCurrentShapeIdx();
-        }
+        shapes.removeCurShape();
     }
 
     void OutputLabel::clearShapes() {
         this->points.clear();
         this->shapes.clear();
-    }
-
-    void OutputLabel::highlightPreviousShape() {
-        fixCurrentShapeIdx();
-        if (numShapes() == 0)
-            return;
-        if (currentShapeIdx > 0) {
-            shapes[currentShapeIdx]->setColor(DEFAULT_COLOR);
-            shapes[currentShapeIdx]->setThickness(DEFAULT_THICKNESS);
-            currentShapeIdx--;
-        }
-        highlightCurrentShape();
-    }
-
-    void OutputLabel::highlightNextShape() {
-        fixCurrentShapeIdx();
-        if (numShapes() == 0)
-            return;
-        if (currentShapeIdx < shapes.size() - 1) {
-            shapes[currentShapeIdx]->setColor(DEFAULT_COLOR);
-            shapes[currentShapeIdx]->setThickness(DEFAULT_THICKNESS);
-            currentShapeIdx++;
-        }
-        highlightCurrentShape();
-    }
-
-    void OutputLabel::highlightCurrentShape() {
-        fixCurrentShapeIdx();
-        if (0 <= currentShapeIdx && currentShapeIdx < numShapes()) {
-            shapes[currentShapeIdx]->setColor(YELLOW);
-            shapes[currentShapeIdx]->setThickness(DEFAULT_THICKNESS + 1);
-        }
     }
 }
