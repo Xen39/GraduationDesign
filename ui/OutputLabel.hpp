@@ -12,51 +12,22 @@
 #include "program/shape/Shape.hpp"
 #include "program/shape/ShapeContainer.hpp"
 #include "program/shape/ShapeType.hpp"
+#include "util/util.hpp"
 
 namespace ui {
     class OutputLabel : public QLabel {
     public:
-        OutputLabel(QWidget *widget = nullptr);
+        OutputLabel(QWidget *widget = nullptr) { setStyleSheet("background-color: lightblue"); }
 
-        void setOriPixmap(const QPixmap &pixmap);
+        void bindProcessor(std::shared_ptr<::program::Processor> processor) { this->processor = processor; }
 
-        bool drawShape(::program::shape::ShapeType type);
-
-        void removeLastPoint();
-
-        void removeCurrentShape();
-
-        void setToNearestContourPoint(bool val) { this->toNearestContourPoint = val; }
-
-        void setShowContours(bool b) { this->showContours = b; }
-
-        void setShowPoints(bool b) { this->showPoints = b; }
-
-        void updateFrame();
-
-        void clearShapes();
-
-        size_t numShapes() { return shapes.numShapes(); }
-
-        auto getParamPairs(size_t id) {
-            return shapes[id]->getParamPairs();
-        }
-
-        void highlightPreviousShape() {shapes.highlightPreviousShape(); }
-
-        void highlightNextShape() {shapes.highlightNextShape();}
+        void updateFrame() { this->setPixmap(util::cvMatToQPixmap(processor->curFrame())); }
 
     protected:
         void mousePressEvent(QMouseEvent *event) override;
 
     private:
-        std::vector<cv::Point> points;
-        program::shape::ShapeContainer shapes;
-        std::unique_ptr<::program::Processor> processor;
-        cv::Mat oriMat;
-        bool toNearestContourPoint;
-        bool showContours;
-        bool showPoints;
+        std::shared_ptr<::program::Processor> processor;
     };
 }
 

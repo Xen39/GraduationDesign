@@ -13,25 +13,7 @@ using namespace program;
 using namespace program::shape;
 using namespace util;
 
-namespace {
-    const cv::Scalar DEFAULT_COLOR = GREEN;
-    const int DEFAULT_THICKNESS = 1;
-}
-
 namespace ui {
-    OutputLabel::OutputLabel(QWidget *widget)
-            : toNearestContourPoint(false), showContours(false) {
-        setStyleSheet("background-color: lightblue");
-    }
-
-    void OutputLabel::setOriPixmap(const QPixmap &pixmap) {
-        this->setPixmap(pixmap);
-        this->oriMat = util::QPixmapToCvMat(pixmap);
-        processor = make_unique<Processor>(this->oriMat);
-        this->clearShapes();
-        updateFrame();
-    }
-
     void OutputLabel::mousePressEvent(QMouseEvent *event) {
         if (event->button() == Qt::LeftButton) {
             QPointF const clickPoint = event->position();
@@ -75,56 +57,10 @@ namespace ui {
                     pixmapY = std::max(0, std::min(pixmapY, pixmapHeight - 1));
 
                     cv::Point point(pixmapX, pixmapY);
-                    if (toNearestContourPoint)
-                        point = processor->toNearestContourPoint(point);
-                    if (!points.empty() && point == points.back()) {
-                        QWARN("两次所选点不能重合");
-                    } else {
-                        points.push_back(point);
-                    }
+                    processor->addPoint(point);
                     updateFrame();
                 }
             }
         }
-    }
-
-    void OutputLabel::updateFrame() {
-        cv::Mat newFrame = oriMat.clone();
-        if (showPoints) {
-            for (const cv::Point &point: points)
-                cv::circle(newFrame, point, 1, RED, 2);
-        }
-        shapes.draw(newFrame);
-        if (this->showContours)
-            cv::drawContours(newFrame, processor->getContours(), -1, BLUE, 1);
-        this->setPixmap(util::cvMatToQPixmap(newFrame));
-    }
-
-    bool OutputLabel::drawShape(::program::shape::ShapeType type) {
-        auto shape = ShapeFactory::build(type, points);
-        if (shape == nullptr) {
-            QWARN("Too few points to draw a " + QString(shape->shapeName()));
-            return false;
-        }
-        if (shape->failed()) {
-            QWARN("Latest several points cannot form a " + QString(shape->shapeName()));
-            return false;
-        }
-        shapes.addShape(shape);
-        return true;
-    }
-
-    void OutputLabel::removeLastPoint() {
-        if (!points.empty())
-            points.pop_back();
-    }
-
-    void OutputLabel::removeCurrentShape() {
-        shapes.removeCurShape();
-    }
-
-    void OutputLabel::clearShapes() {
-        this->points.clear();
-        this->shapes.clear();
     }
 }

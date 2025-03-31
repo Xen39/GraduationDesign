@@ -4,6 +4,8 @@
 #include <QPushButton>
 #include <InputLabel.hpp>
 
+#include "program/Processor.hpp"
+
 QT_BEGIN_NAMESPACE
 namespace Ui {
     class MainWindow;
@@ -37,4 +39,5 @@ private:
     void displayParamPairs(std::vector<std::pair<std::string, std::string>> paramPairs);
     std::vector<std::pair<QLabel*, QLabel*>> displayParis;
     Ui::MainWindow *ui;
+    std::shared_ptr<program::Processor>processor;
 };

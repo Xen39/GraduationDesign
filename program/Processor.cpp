@@ -5,19 +5,20 @@
 #include <vector>
 #include <opencv2/opencv.hpp>
 
+#include "program/shape/ShapeFactory.hpp"
 #include "util/macros.hpp"
 #include "util/util.hpp"
 
 using namespace std;
 using namespace util;
+using namespace program::shape;
 
 namespace program {
-    Processor::Processor(const cv::Mat &mat) {
-        CHECK(!mat.empty(), "Cannot process empty image");
+    void Processor::preprocess(const cv::Mat &mat) {
+        if(mat.empty())
+            return;
         clear();
-
-        this->width = mat.cols;
-        this->height = mat.rows;
+        this->oriMat = mat.clone();
 
         cv::Mat gray, blurred, edges;
         // 转为灰度图
@@ -33,6 +34,29 @@ namespace program {
         vector<cv::Vec4i> hierarchy;
         cv::findContours(edges, contours, hierarchy, cv::RETR_LIST, cv::CHAIN_APPROX_SIMPLE);
         CHECK(!contours.empty(), "Processor::Processor() cannot find contour");
+    }
+
+    bool Processor::drawShape(::program::shape::ShapeType type) {
+        auto shape = ShapeFactory::build(type, points);
+        if (shape == nullptr) {
+            QWARN("Too few points to draw a " + QString(shape->shapeName()));
+            return false;
+        }
+        if (shape->failed()) {
+            QWARN("Latest several points cannot form a " + QString(shape->shapeName()));
+            return false;
+        }
+        shapes.addShape(shape);
+        return true;
+    }
+
+    void Processor::removeLastPoint() {
+        if (!points.empty())
+            points.pop_back();
+    }
+
+    void Processor::removeCurrentShape() {
+        shapes.removeCurShape();
     }
 
     cv::Point Processor::toNearestContourPoint(cv::Point const &pointFrom) {
@@ -52,8 +76,30 @@ namespace program {
         return *nearestPoint;
     }
 
-    void Processor::clear() {
-        this->contours.clear();
-        this->width = this->height = 0;
+    void Processor::addPoint(cv::Point p) {
+        if (recognizeAsNearestContourPoint)
+            points.push_back(toNearestContourPoint(p));
+        else
+            points.push_back(p);
     }
+
+    cv::Mat Processor::curFrame() {
+        cv::Mat newFrame = oriMat.clone();
+        shapes.draw(newFrame);
+        if (showContours)
+            cv::drawContours(newFrame, contours, -1, BLUE, 1);
+        if (showPoints) {
+            for (const cv::Point &point: points)
+                cv::circle(newFrame, point, 1, RED, 2);
+        }
+        return newFrame;
+    }
+
+    void Processor::clear() {
+        contours.clear();
+        points.clear();
+        shapes.clear();
+    }
+
+
 }

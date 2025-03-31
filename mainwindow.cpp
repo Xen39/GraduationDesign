@@ -12,12 +12,19 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
+using namespace std;
 using namespace util;
+using namespace program;
 using namespace program::shape;
 
 MainWindow::MainWindow(QWidget *parent)
-        : QMainWindow(parent), ui(new Ui::MainWindow) {
+        : QMainWindow(parent), ui(new Ui::MainWindow)
+        , processor(make_shared<Processor>()){
     ui->setupUi(this);
+    ui->outputLabel->bindProcessor(processor);
+    processor->setToNearestContourPoint(ui->toNearestContourPointCheckBox->isChecked());
+    processor->setShowContours(ui->showContourCheckBox->isChecked());
+    processor->setShowPoints(ui->showPointCheckBox->isChecked());
     displayParis.emplace_back(ui->name0Label, ui->value0Label);
     displayParis.emplace_back(ui->name1Label, ui->value1Label);
     displayParis.emplace_back(ui->name2Label, ui->value2Label);
@@ -26,9 +33,6 @@ MainWindow::MainWindow(QWidget *parent)
     displayParis.emplace_back(ui->name5Label, ui->value5Label);
     displayParis.emplace_back(ui->name6Label, ui->value6Label);
     displayParis.emplace_back(ui->name7Label, ui->value7Label);
-    ui->outputLabel->setToNearestContourPoint(ui->toNearestContourPointCheckBox->isChecked());
-    ui->outputLabel->setShowContours(ui->showContourCheckBox->isChecked());
-    ui->outputLabel->setShowPoints(ui->showPointCheckBox->isChecked());
 }
 
 MainWindow::~MainWindow() {
@@ -43,40 +47,40 @@ void MainWindow::on_runButton_clicked() {
     QPixmap originPixmap = ui->inputLabel->pixmap();
     if (originPixmap.isNull())
         return;
-    ui->outputLabel->setOriPixmap(originPixmap);
+    processor->preprocess(QPixmapToCvMat(originPixmap));
     ui->outputLabel->updateFrame();
 }
 
 void MainWindow::on_drawButton_clicked() {
     auto shapeIdx = ui->shapeComboBox->currentIndex();
-    if (ui->outputLabel->drawShape(getShapeType(shapeIdx))) {
+    if (processor->drawShape(getShapeType(shapeIdx))) {
         ui->outputLabel->updateFrame();
-        const auto &paramPairs = ui->outputLabel->getParamPairs(ui->outputLabel->numShapes() - 1);
+        const auto &paramPairs = processor->getParamPairs();
         displayParamPairs(paramPairs);
     }
 }
 
 void MainWindow::on_removeLastPointButton_clicked() {
-    ui->outputLabel->removeLastPoint();
+    processor->removeLastPoint();
     ui->outputLabel->updateFrame();
 }
 
 void MainWindow::on_removeCurrentShapeButton_clicked() {
-    ui->outputLabel->removeCurrentShape();
+    processor->removeCurrentShape();
     ui->outputLabel->updateFrame();
 }
 
 void MainWindow::on_toNearestContourPointCheckBox_stateChanged(int val) {
-    ui->outputLabel->setToNearestContourPoint(ui->toNearestContourPointCheckBox->isChecked());
+    processor->setToNearestContourPoint(ui->toNearestContourPointCheckBox->isChecked());
 }
 
 void MainWindow::on_showContourCheckBox_stateChanged(int val) {
-    ui->outputLabel->setShowContours(ui->showContourCheckBox->isChecked());
+    processor->setShowContours(ui->showContourCheckBox->isChecked());
     ui->outputLabel->updateFrame();
 }
 
 void MainWindow::on_showPointCheckBox_stateChanged(int val) {
-    ui->outputLabel->setShowPoints(ui->showPointCheckBox->isChecked());
+    processor->setShowPoints(ui->showPointCheckBox->isChecked());
     ui->outputLabel->updateFrame();
 }
 
@@ -116,13 +120,13 @@ void MainWindow::displayParamPairs(std::vector<std::pair<std::string, std::strin
 }
 
 void MainWindow::on_previousShapeButton_clicked() {
-    ui->outputLabel->highlightPreviousShape();
+    processor->previousShape();
     ui->outputLabel->updateFrame();
 }
 
 
 void MainWindow::on_nextShapeButton_clicked() {
-    ui->outputLabel->highlightNextShape();
+    processor->nextShape();
     ui->outputLabel->updateFrame();
 }
 

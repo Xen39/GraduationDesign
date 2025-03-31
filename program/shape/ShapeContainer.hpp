@@ -11,15 +11,17 @@ namespace program::shape {
     public:
         ShapeContainer();
 
+        std::shared_ptr<Shape> curShape();
+
         void addShape(const std::shared_ptr<Shape>& shape);
 
         void removeCurShape();
 
         [[nodiscard]] size_t numShapes() const;
 
-        void highlightPreviousShape();
+        void previousShape();
 
-        void highlightNextShape();
+        void nextShape();
 
         void draw(cv::Mat &mat);
 

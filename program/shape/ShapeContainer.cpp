@@ -16,6 +16,14 @@ namespace program::shape {
         clear();
     }
 
+    std::shared_ptr<Shape> ShapeContainer::curShape() {
+        if (shapes.empty()) {
+            assert(curIdx == INVALID);
+            return nullptr;
+        }
+        return shapes[curIdx];
+    }
+
     void ShapeContainer::addShape(const shared_ptr <Shape> &shape) {
         shapes.push_back(shape);
         if (curIdx != INVALID) {
@@ -45,7 +53,7 @@ namespace program::shape {
         return shapes.size();
     }
 
-    void ShapeContainer::highlightPreviousShape() {
+    void ShapeContainer::previousShape() {
         if (shapes.empty()) {
             assert(curIdx == INVALID);
             return;
@@ -57,7 +65,7 @@ namespace program::shape {
         }
     }
 
-    void ShapeContainer::highlightNextShape() {
+    void ShapeContainer::nextShape() {
         if (shapes.empty()) {
             assert(curIdx == INVALID);
             return;

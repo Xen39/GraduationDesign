@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1217</width>
-    <height>636</height>
+    <height>657</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -224,7 +224,7 @@
         <item row="5" column="1">
          <widget class="QPushButton" name="removeCurrentShapeButton">
           <property name="text">
-           <string>删除上个图形</string>
+           <string>删除当前图形</string>
           </property>
          </widget>
         </item>
