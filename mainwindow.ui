@@ -242,6 +242,11 @@
           </item>
           <item>
            <property name="text">
+            <string>轮廓线(一点)</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
             <string>直线(两点)</string>
            </property>
           </item>
