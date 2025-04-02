@@ -53,7 +53,7 @@ void MainWindow::on_runButton_clicked() {
 
 void MainWindow::on_drawButton_clicked() {
     auto shapeIdx = ui->shapeComboBox->currentIndex();
-    if (processor->drawShape(getShapeType(shapeIdx))) {
+    if (processor->drawShape(ShapeType::fromInt(shapeIdx))) {
         ui->outputLabel->updateFrame();
         const auto &paramPairs = processor->getParamPairs();
         displayParamPairs(paramPairs);

@@ -21,7 +21,7 @@ namespace program::shape {
                                             const std::shared_ptr<std::vector<std::vector<cv::Point>>>& contours) {
             size_t n = points.size();
             std::shared_ptr<Shape> shape = nullptr;
-            switch(type) {
+            switch (type.type) {
                 case ShapeType::Arc:
                     if (n >= 3) {
                         shape = std::make_shared<Arc>(points[n - 3], points[n - 2], points[n - 1]);
