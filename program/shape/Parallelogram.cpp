@@ -46,14 +46,14 @@ namespace program::shape {
         if (distance(v1, v2) > distance(v2, v3)) {
             circularSwap(v1, v2, v3, v4);
         }
-        length = roundToInt((distance(v1,v2) + distance(v3,v4)) / 2.0);
-        width = roundToInt((distance(v1,v4) + distance(v2,v3)) / 2.0);
+        length = roundToInt((distance(v1, v2) + distance(v3, v4)) / 2.0);
+        width = roundToInt((distance(v1, v4) + distance(v2, v3)) / 2.0);
     }
 
     void Parallelogram::draw(cv::Mat &mat) const {
-        cv::line(mat,v1,v2, color, thickness, getLineType());
-        cv::line(mat,v2,v3, color, thickness, getLineType());
-        cv::line(mat,v3,v4, color, thickness, getLineType());
-        cv::line(mat,v4,v1, color, thickness, getLineType());
+        cv::line(mat, v1, v2, color, thickness, getLineType());
+        cv::line(mat, v2, v3, color, thickness, getLineType());
+        cv::line(mat, v3, v4, color, thickness, getLineType());
+        cv::line(mat, v4, v1, color, thickness, getLineType());
     }
 }

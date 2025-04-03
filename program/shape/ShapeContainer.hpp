@@ -13,7 +13,7 @@ namespace program::shape {
 
         std::shared_ptr<Shape> curShape();
 
-        void addShape(const std::shared_ptr<Shape>& shape);
+        void addShape(const std::shared_ptr<Shape> &shape);
 
         void removeCurShape();
 
@@ -30,9 +30,9 @@ namespace program::shape {
         void clear();
 
     private:
-        void highlight(const std::shared_ptr<Shape>& shape);
+        void highlight(const std::shared_ptr<Shape> &shape);
 
-        void dehighlight(const std::shared_ptr<Shape>& shape);
+        void dehighlight(const std::shared_ptr<Shape> &shape);
 
         std::vector<std::shared_ptr<Shape>> shapes;
         int curIdx;

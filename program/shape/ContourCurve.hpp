@@ -11,7 +11,7 @@ namespace program::shape {
 
         virtual ~ContourCurve() = default;
 
-        [[nodiscard]] const char * shapeName() const override { return "轮廓线"; }
+        [[nodiscard]] const char *shapeName() const override { return "轮廓线"; }
 
         virtual std::vector<std::pair<std::string, std::string>> getParamPairs() const override {
             return {

@@ -12,11 +12,11 @@ namespace program::shape {
 
         virtual ~Polyline() = default;
 
-        const char * shapeName() const override { return "多段折线"; }
+        const char *shapeName() const override { return "多段折线"; }
 
         std::vector<std::pair<std::string, std::string>> getParamPairs() const override {
             return {
-                    {"图形", shapeName()},
+                    {"图形",   shapeName()},
                     {"总长度", std::to_string(length())},
             };
         }

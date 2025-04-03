@@ -18,8 +18,7 @@ using namespace program;
 using namespace program::shape;
 
 MainWindow::MainWindow(QWidget *parent)
-        : QMainWindow(parent), ui(new Ui::MainWindow)
-        , processor(make_shared<Processor>()){
+        : QMainWindow(parent), ui(new Ui::MainWindow), processor(make_shared<Processor>()) {
     ui->setupUi(this);
     ui->outputLabel->bindProcessor(processor);
     processor->setToNearestContourPoint(ui->toNearestContourPointCheckBox->isChecked());

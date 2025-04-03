@@ -5,7 +5,7 @@
 #include "Circle.hpp"
 
 namespace program::shape {
-    class Arc : public Circle{
+    class Arc : public Circle {
     public:
         Arc(const cv::Point &endPoint1, const cv::Point &midPoint, const cv::Point &endPoint2);
 

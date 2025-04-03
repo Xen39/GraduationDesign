@@ -16,26 +16,26 @@ namespace util {
     int roundToInt(double d);
 
     template<typename T>
-    const T& max(const T& t) {
+    const T &max(const T &t) {
         return t;
     }
 
     template<typename T, typename... Args>
-    const T& max(const T& t, Args... args) {
+    const T &max(const T &t, Args... args) {
         return std::max(t, max(args...));
     }
 
     template<typename T>
-    const T& min(const T& t) {
+    const T &min(const T &t) {
         return t;
     }
 
     template<typename T, typename... Args>
-    const T& min(const T& t, Args... args) {
+    const T &min(const T &t, Args... args) {
         return std::min(t, min(args...));
     }
-    
-    std::string to_string(const cv::Point & v);
+
+    std::string to_string(const cv::Point &v);
 
     /// return a degree within [0, 360)
     double calcAngle(const cv::Point &origin, const cv::Point &target);

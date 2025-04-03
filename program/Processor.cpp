@@ -15,7 +15,7 @@ using namespace program::shape;
 
 namespace program {
     void Processor::preprocess(const cv::Mat &mat) {
-        if(mat.empty())
+        if (mat.empty())
             return;
         clear();
         this->oriMat = mat.clone();

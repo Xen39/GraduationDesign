@@ -24,6 +24,6 @@ namespace program::shape {
     }
 
     void Circle::draw(cv::Mat &mat) const {
-        cv::circle(mat, center, radius, color, thickness,getLineType());
+        cv::circle(mat, center, radius, color, thickness, getLineType());
     }
 }

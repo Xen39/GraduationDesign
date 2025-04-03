@@ -80,14 +80,14 @@ namespace util {
     }
 
     double distance(const cv::Point &v1, const cv::Point &v2) {
-        return sqrt((double)distanceSquare(v1, v2));
+        return sqrt((double) distanceSquare(v1, v2));
     }
 
     int roundToInt(double d) {
         return static_cast<int>(round(d));
     }
 
-    string to_string(const cv::Point& v) {
+    string to_string(const cv::Point &v) {
         ostringstream oss;
         oss << '(' << v.x << ',' << v.y << ')';
         return oss.str();
