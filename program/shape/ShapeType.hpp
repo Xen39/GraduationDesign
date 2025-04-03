@@ -11,6 +11,7 @@ namespace program::shape {
             First,
             Arc = First,
             Circle,
+            ConnectedPolyline,
             ContourCurve,
             InfiniteLine,
             LineSegment,
@@ -29,6 +30,7 @@ namespace program::shape {
 
         static constexpr Type Arc = Type::Arc;
         static constexpr Type Circle = Type::Circle;
+        static constexpr Type ConnectedPolyline = Type::ConnectedPolyline;
         static constexpr Type ContourCurve = Type::ContourCurve;
         static constexpr Type InfiniteLine = Type::InfiniteLine;
         static constexpr Type LineSegment = Type::LineSegment;

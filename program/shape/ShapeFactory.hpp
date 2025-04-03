@@ -5,8 +5,9 @@
 
 #include "program/shape/Arc.hpp"
 #include "program/shape/Circle.hpp"
-#include "program/shape/InfiniteLine.hpp"
+#include "program/shape/ConnectedPolyline.hpp"
 #include "program/shape/ContourCurve.hpp"
+#include "program/shape/InfiniteLine.hpp"
 #include "program/shape/LineSegment.hpp"
 #include "program/shape/Parallelogram.hpp"
 #include "program/shape/Polyline.hpp"
@@ -31,52 +32,67 @@ namespace program::shape {
                     if (numPoints >= 3) {
                         shape = std::make_shared<Arc>(points[numPoints - 3], points[numPoints - 2],
                                                       points[numPoints - 1]);
-                        removePoints(3);
+                        if (shape != nullptr && !shape->failed())
+                            removePoints(3);
                     }
                     break;
                 case ShapeType::Circle:
                     if (numPoints >= 3) {
                         shape = std::make_shared<Circle>(points[numPoints - 3], points[numPoints - 2],
                                                          points[numPoints - 1]);
-                        removePoints(3);
+                        if (shape != nullptr && !shape->failed())
+                            removePoints(3);
+                    }
+                    break;
+                case ShapeType::ConnectedPolyline:
+                    if (numPoints >= 2) {
+                        shape = std::make_shared<ConnectedPolyline>(points);
+                        if (shape != nullptr && !shape->failed())
+                            points.clear();
                     }
                     break;
                 case ShapeType::ContourCurve:
                     if (numPoints >= 1) {
                         shape = std::make_shared<ContourCurve>(contours, points[numPoints - 1]);
-                        removePoints(1);
+                        if (shape != nullptr && !shape->failed())
+                            removePoints(1);
                     }
                     break;
                 case ShapeType::InfiniteLine:
                     if (numPoints >= 2) {
                         shape = std::make_shared<InfiniteLine>(points[numPoints - 2], points[numPoints - 1]);
-                        removePoints(2);
+                        if (shape != nullptr && !shape->failed())
+                            removePoints(2);
                     }
                     break;
                 case ShapeType::LineSegment:
                     if (numPoints >= 2) {
                         shape = std::make_shared<LineSegment>(points[numPoints - 2], points[numPoints - 1]);
-                        removePoints(2);
+                        if (shape != nullptr && !shape->failed())
+                            removePoints(2);
                     }
                     break;
                 case ShapeType::Parallelogram:
                     if (numPoints >= 4) {
                         shape = std::make_shared<Parallelogram>(points[numPoints - 4], points[numPoints - 3],
                                                                 points[numPoints - 2], points[numPoints - 1]);
-                        removePoints(4);
+                        if (shape != nullptr && !shape->failed())
+                            removePoints(4);
                     }
                     break;
                 case ShapeType::Polyline:
                     if (numPoints >= 2) {
                         shape = std::make_shared<Polyline>(points);
-                        points.clear();
+                        if (shape != nullptr && !shape->failed())
+                            points.clear();
                     }
                     break;
                 case ShapeType::Rectangle:
                     if (numPoints >= 4) {
                         shape = std::make_shared<Rectangle>(points[numPoints - 4], points[numPoints - 3],
                                                             points[numPoints - 2], points[numPoints - 1]);
-                        removePoints(4);
+                        if (shape != nullptr && !shape->failed())
+                            removePoints(4);
                     }
                     break;
                 default:
