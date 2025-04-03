@@ -16,6 +16,8 @@ namespace program {
 
         bool drawShape(shape::ShapeType type);
 
+        void removeAllPoints();
+
         void removeLastPoint();
 
         void removeCurrentShape();

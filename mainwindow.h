@@ -24,6 +24,7 @@ private slots:
     void on_runButton_clicked();
     void on_cameraButton_clicked();
     void on_drawButton_clicked();
+    void on_removeAllPointsButton_clicked();
     void on_removeLastPointButton_clicked();
     void on_removeCurrentShapeButton_clicked();
     void on_previousShapeButton_clicked();

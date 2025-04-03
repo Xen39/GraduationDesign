@@ -204,27 +204,24 @@
         <property name="spacing">
          <number>0</number>
         </property>
-        <item row="1" column="4">
-         <widget class="QCheckBox" name="toNearestContourPointCheckBox">
+        <item row="3" column="1">
+         <widget class="QPushButton" name="removeLastPointButton">
           <property name="text">
-           <string>识别为最近轮廓点</string>
-          </property>
-          <property name="checked">
-           <bool>true</bool>
+           <string>删除上个点</string>
           </property>
          </widget>
         </item>
-        <item row="5" column="2">
-         <widget class="QPushButton" name="nextShapeButton">
-          <property name="text">
-           <string>选择下个图形</string>
-          </property>
-         </widget>
-        </item>
-        <item row="5" column="1">
+        <item row="6" column="1">
          <widget class="QPushButton" name="removeCurrentShapeButton">
           <property name="text">
            <string>删除当前图形</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="2">
+         <widget class="QPushButton" name="previousShapeButton">
+          <property name="text">
+           <string>选择上个图形</string>
           </property>
          </widget>
         </item>
@@ -272,10 +269,20 @@
           </item>
          </widget>
         </item>
-        <item row="5" column="3">
-         <widget class="QPushButton" name="drawButton">
+        <item row="3" column="4">
+         <widget class="QCheckBox" name="showContourCheckBox">
           <property name="text">
-           <string>绘制图形</string>
+           <string>显示轮廓</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="4">
+         <widget class="QCheckBox" name="toNearestContourPointCheckBox">
+          <property name="text">
+           <string>识别为最近轮廓点</string>
+          </property>
+          <property name="checked">
+           <bool>true</bool>
           </property>
          </widget>
         </item>
@@ -286,6 +293,13 @@
           </property>
          </widget>
         </item>
+        <item row="5" column="1">
+         <widget class="QPushButton" name="removeAllPointsButton">
+          <property name="text">
+           <string>清空所有点</string>
+          </property>
+         </widget>
+        </item>
         <item row="5" column="0">
          <widget class="QPushButton" name="cameraButton">
           <property name="text">
@@ -293,17 +307,17 @@
           </property>
          </widget>
         </item>
-        <item row="3" column="1">
-         <widget class="QPushButton" name="removeLastPointButton">
+        <item row="5" column="2">
+         <widget class="QPushButton" name="nextShapeButton">
           <property name="text">
-           <string>删除上个点</string>
+           <string>选择下个图形</string>
           </property>
          </widget>
         </item>
-        <item row="3" column="2">
-         <widget class="QPushButton" name="previousShapeButton">
+        <item row="5" column="3">
+         <widget class="QPushButton" name="drawButton">
           <property name="text">
-           <string>选择上个图形</string>
+           <string>绘制图形</string>
           </property>
          </widget>
         </item>
@@ -314,13 +328,6 @@
           </property>
           <property name="checked">
            <bool>true</bool>
-          </property>
-         </widget>
-        </item>
-        <item row="3" column="4">
-         <widget class="QCheckBox" name="showContourCheckBox">
-          <property name="text">
-           <string>显示轮廓</string>
           </property>
          </widget>
         </item>

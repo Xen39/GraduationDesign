@@ -60,6 +60,11 @@ void MainWindow::on_drawButton_clicked() {
     }
 }
 
+void MainWindow::on_removeAllPointsButton_clicked() {
+    processor->removeAllPoints();
+    ui->outputLabel->updateFrame();
+}
+
 void MainWindow::on_removeLastPointButton_clicked() {
     processor->removeLastPoint();
     ui->outputLabel->updateFrame();
@@ -129,4 +134,3 @@ void MainWindow::on_nextShapeButton_clicked() {
     processor->nextShape();
     ui->outputLabel->updateFrame();
 }
-

@@ -50,6 +50,10 @@ namespace program {
         return true;
     }
 
+    void Processor::removeAllPoints() {
+        points.clear();
+    }
+
     void Processor::removeLastPoint() {
         if (!points.empty())
             points.pop_back();
