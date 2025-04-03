@@ -15,6 +15,7 @@ namespace program::shape {
             InfiniteLine,
             LineSegment,
             Parallelogram,
+            Polyline,
             Rectangle,
             Last = Rectangle
         };
@@ -32,6 +33,7 @@ namespace program::shape {
         static constexpr Type InfiniteLine = Type::InfiniteLine;
         static constexpr Type LineSegment = Type::LineSegment;
         static constexpr Type Parallelogram = Type::Parallelogram;
+        static constexpr Type Polyline = Type::Polyline;
         static constexpr Type Rectangle = Type::Rectangle;
     private:
         ShapeType(Type type) : type(type) {}

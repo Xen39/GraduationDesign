@@ -9,6 +9,7 @@
 #include "program/shape/ContourCurve.hpp"
 #include "program/shape/LineSegment.hpp"
 #include "program/shape/Parallelogram.hpp"
+#include "program/shape/Polyline.hpp"
 #include "program/shape/Rectangle.hpp"
 #include "program/shape/Shape.hpp"
 #include "program/shape/ShapeType.hpp"
@@ -17,47 +18,69 @@ namespace program::shape {
 
     class ShapeFactory {
     public:
-        static std::shared_ptr<Shape> build(ShapeType type, const std::vector<cv::Point> &points,
-                                            const std::shared_ptr<std::vector<std::vector<cv::Point>>>& contours) {
-            size_t n = points.size();
+        static std::shared_ptr<Shape> build(ShapeType type, std::vector<cv::Point> &points,
+                                            const std::shared_ptr<std::vector<std::vector<cv::Point>>> &contours) {
+            size_t numPoints = points.size();
             std::shared_ptr<Shape> shape = nullptr;
+            auto removePoints = [&points](size_t n) {
+                assert(points.size() >= n);
+                points.erase(points.end() - n, points.end());
+            };
             switch (type.type) {
                 case ShapeType::Arc:
-                    if (n >= 3) {
-                        shape = std::make_shared<Arc>(points[n - 3], points[n - 2], points[n - 1]);
+                    if (numPoints >= 3) {
+                        shape = std::make_shared<Arc>(points[numPoints - 3], points[numPoints - 2],
+                                                      points[numPoints - 1]);
+                        removePoints(3);
                     }
                     break;
                 case ShapeType::Circle:
-                    if (n >= 3) {
-                        shape = std::make_shared<Circle>(points[n - 3], points[n - 2], points[n - 1]);
+                    if (numPoints >= 3) {
+                        shape = std::make_shared<Circle>(points[numPoints - 3], points[numPoints - 2],
+                                                         points[numPoints - 1]);
+                        removePoints(3);
                     }
                     break;
                 case ShapeType::ContourCurve:
-                    if (n >= 1) {
-                        shape = std::make_shared<ContourCurve>(contours, points[n - 1]);
+                    if (numPoints >= 1) {
+                        shape = std::make_shared<ContourCurve>(contours, points[numPoints - 1]);
+                        removePoints(1);
                     }
                     break;
                 case ShapeType::InfiniteLine:
-                    if (n >= 2) {
-                        shape = std::make_shared<InfiniteLine>(points[n - 2], points[n - 1]);
+                    if (numPoints >= 2) {
+                        shape = std::make_shared<InfiniteLine>(points[numPoints - 2], points[numPoints - 1]);
+                        removePoints(2);
                     }
                     break;
                 case ShapeType::LineSegment:
-                    if (n >= 2) {
-                        shape = std::make_shared<LineSegment>(points[n - 2], points[n - 1]);
+                    if (numPoints >= 2) {
+                        shape = std::make_shared<LineSegment>(points[numPoints - 2], points[numPoints - 1]);
+                        removePoints(2);
                     }
                     break;
                 case ShapeType::Parallelogram:
-                    if (n >= 4) {
-                        shape = std::make_shared<Parallelogram>(points[n - 4], points[n - 3], points[n - 2],
-                                                                points[n - 1]);
+                    if (numPoints >= 4) {
+                        shape = std::make_shared<Parallelogram>(points[numPoints - 4], points[numPoints - 3],
+                                                                points[numPoints - 2], points[numPoints - 1]);
+                        removePoints(4);
+                    }
+                    break;
+                case ShapeType::Polyline:
+                    if (numPoints >= 2) {
+                        shape = std::make_shared<Polyline>(points);
+                        points.clear();
                     }
                     break;
                 case ShapeType::Rectangle:
-                    if (n >= 4) {
-                        shape = std::make_shared<Rectangle>(points[n - 4], points[n - 3], points[n - 2], points[n - 1]);
+                    if (numPoints >= 4) {
+                        shape = std::make_shared<Rectangle>(points[numPoints - 4], points[numPoints - 3],
+                                                            points[numPoints - 2], points[numPoints - 1]);
+                        removePoints(4);
                     }
                     break;
+                default:
+                    throw std::runtime_error("Unexpected ShapeType " + std::to_string(static_cast<int>(type.type)));
             }
             return shape;
         }

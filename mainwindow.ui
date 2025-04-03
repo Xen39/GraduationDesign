@@ -262,6 +262,11 @@
           </item>
           <item>
            <property name="text">
+            <string>多段折线(多点)</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
             <string>矩形(四角)</string>
            </property>
           </item>
