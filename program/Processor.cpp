@@ -39,11 +39,11 @@ namespace program {
     bool Processor::drawShape(::program::shape::ShapeType type) {
         auto shape = ShapeFactory::build(type, points, contours);
         if (shape == nullptr) {
-            QWARN("Too few points to draw the target shape");
+            QWarn("Too few points to draw the target shape");
             return false;
         }
         if (shape->failed()) {
-            QWARN("Latest several points cannot form a " + QString(shape->shapeName()));
+            QWarn("Latest several points cannot form a " + QString(shape->shapeName()));
             return false;
         }
         shapes.addShape(shape);

@@ -7,6 +7,30 @@
 using namespace std;
 
 namespace util {
+    void QWarn(const QString &msg) {
+        QMessageBox::warning(nullptr, "警告", msg);
+    }
+
+    void QWarn(const std::string &msg) {
+        QMessageBox::warning(nullptr, "警告", QString::fromStdString(msg));
+    }
+
+    void QWarn(const char *msg) {
+        QMessageBox::warning(nullptr, "警告", msg);
+    }
+
+    void QInfo(const QString &msg) {
+        QMessageBox::information(nullptr, "提示", msg);
+    }
+
+    void QInfo(const std::string &msg) {
+        QMessageBox::information(nullptr, "提示", QString::fromStdString(msg));
+    }
+
+    void QInfo(const char *msg) {
+        QMessageBox::information(nullptr, "提示", msg);
+    }
+
     QPixmap cvMatToQPixmap(const cv::Mat &mat) {
         if (mat.empty())
             return QPixmap();

@@ -15,7 +15,7 @@ using namespace util;
 namespace ui {
     InputLabel::InputLabel(QWidget *widget) : QLabel(widget), cameraTimer(this) {
         if (!connect(&cameraTimer, &QTimer::timeout, this, &InputLabel::updateFrame))
-            QWARN("Cannot connect cameraTimer with InputLabel::updateFrame");
+            QWarn("Cannot connect cameraTimer with InputLabel::updateFrame");
         setAcceptDrops(true);
         setStyleSheet("background-color: lightgreen");
     }
@@ -43,7 +43,7 @@ namespace ui {
         } else {
             bool success = startCamera();
             if (!success)
-                QWARN("Camera open failed!");
+                QWarn("Camera open failed!");
         }
     }
 
@@ -79,7 +79,7 @@ namespace ui {
         cv::Mat frame;
         cap >> frame;
         if (frame.empty()) {
-            QWARN("Empty camera frame found, stopped camera");
+            QWarn("Empty camera frame found, stopped camera");
             stopCamera();
             return;
         }

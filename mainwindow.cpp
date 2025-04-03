@@ -5,7 +5,6 @@
 #include <QFileDialog>
 #include <QString>
 
-#include "util/macros.hpp"
 #include "util/util.hpp"
 #include "program/Processor.hpp"
 
@@ -91,15 +90,15 @@ void MainWindow::on_showPointCheckBox_stateChanged(int val) {
 void MainWindow::on_actionaa_triggered() {
     QPixmap outputPixmap = ui->outputLabel->pixmap();
     if (outputPixmap.isNull()) {
-        QWARN("图片为空,无法保存");
+        QWarn("图片为空,无法保存");
         return;
     }
     QString filePath = QFileDialog::getSaveFileName(this, "保存图片", "", "图片文件 (*.png *.jpg *.bmp)");
     if (!filePath.isEmpty()) {
         if (outputPixmap.save(filePath)) {
-            QINFO(filePath + " 图片保存成功");
+            QInfo(filePath + " 图片保存成功");
         } else {
-            QWARN(filePath + " 图片保存失败");
+            QWarn(filePath + " 图片保存失败");
         }
 
     }
@@ -107,7 +106,7 @@ void MainWindow::on_actionaa_triggered() {
 
 void MainWindow::displayParamPairs(std::vector<std::pair<std::string, std::string>> paramPairs) {
     if (paramPairs.size() > displayParis.size()) {
-        QWARN("Too many shape param pairs!");
+        QWarn("Too many shape param pairs!");
     }
     size_t i;
     for (i = 0; i < paramPairs.size() && i < displayParis.size(); ++i) {

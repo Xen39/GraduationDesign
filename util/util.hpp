@@ -3,8 +3,22 @@
 #include <opencv2/opencv.hpp>
 
 #include <QPixmap>
+#include <QString>
+#include <string>
 
 namespace util {
+    void QWarn(const QString &msg);
+
+    void QWarn(const std::string &msg);
+
+    void QWarn(const char *msg);
+
+    void QInfo(const QString &msg);
+
+    void QInfo(const std::string &msg);
+
+    void QInfo(char const *msg);
+
     QPixmap cvMatToQPixmap(const cv::Mat &mat);
 
     cv::Mat QPixmapToCvMat(const QPixmap &pixmap);
