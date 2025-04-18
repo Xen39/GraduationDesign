@@ -124,11 +124,12 @@ void MainWindow::displayParamPairs(std::vector<std::pair<std::string, std::strin
 
 void MainWindow::on_previousShapeButton_clicked() {
     processor->previousShape();
+    displayParamPairs(processor->getParamPairs());
     ui->outputLabel->updateFrame();
 }
 
-
 void MainWindow::on_nextShapeButton_clicked() {
     processor->nextShape();
+    displayParamPairs(processor->getParamPairs());
     ui->outputLabel->updateFrame();
 }
