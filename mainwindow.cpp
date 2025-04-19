@@ -70,6 +70,7 @@ void MainWindow::on_removeLastPointButton_clicked() {
 
 void MainWindow::on_removeCurrentShapeButton_clicked() {
     processor->removeCurrentShape();
+    displayParamPairs(processor->getParamPairs());
     ui->outputLabel->updateFrame();
 }
 
