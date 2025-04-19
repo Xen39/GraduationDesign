@@ -18,11 +18,13 @@ namespace program::shape {
             return {
                     {"图形", shapeName()},
                     {"圆心", util::to_string(center)},
-                    {"半径", std::to_string(radius)}
+                    {"半径", std::to_string(radius * util::getRatio())}
             };
         }
 
         virtual void draw(cv::Mat &mat) const override;
+
+        [[nodiscard]] int getRadius() const { return radius; }
 
     protected:
         cv::Point center;

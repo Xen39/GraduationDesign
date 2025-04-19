@@ -43,6 +43,8 @@ namespace program {
 
         void addPoint(cv::Point p);
 
+        bool circleResize(); // 单圆校正
+
         cv::Mat curFrame();
 
     private:

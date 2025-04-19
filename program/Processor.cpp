@@ -5,6 +5,8 @@
 #include <vector>
 #include <opencv2/opencv.hpp>
 
+#include <QInputDialog>
+
 #include "program/shape/ShapeFactory.hpp"
 #include "util/macros.hpp"
 #include "util/util.hpp"
@@ -36,7 +38,7 @@ namespace program {
         CHECK(!contours->empty(), "Processor::Processor() cannot find contour");
     }
 
-    bool Processor::drawShape(::program::shape::ShapeType type) {
+    bool Processor::drawShape(ShapeType type) {
         auto shape = ShapeFactory::build(type, points, contours);
         if (shape == nullptr) {
             QWarn("Too few points to draw the target shape");
@@ -85,6 +87,21 @@ namespace program {
             points.push_back(toNearestContourPoint(p));
         else
             points.push_back(p);
+    }
+
+    bool Processor::circleResize() {
+        auto circle = dynamic_pointer_cast<Circle>(shapes.curShape());
+        if (circle == nullptr) {
+            QWarn("请选择圆或圆弧以进行校正");
+            return false;
+        }
+        int pictureLen = circle->getRadius();
+        bool ok;
+        double realLen = QInputDialog::getDouble(nullptr, "", "请输入圆的实际半径", pictureLen, 0.01, 2147483647, 2, &ok);
+        if (!ok)
+            return false;
+        util::setRatio(realLen / pictureLen);
+        return true;
     }
 
     cv::Mat Processor::curFrame() {

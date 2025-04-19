@@ -61,4 +61,9 @@ namespace util {
 
     constexpr double VERTICAL = std::numeric_limits<double>::max();
     constexpr double HORIZONTAL = std::numeric_limits<double>::max();
+
+    // 缩放比例，用于单圆校正
+    void setRatio(double ratio);
+
+    double getRatio();
 }

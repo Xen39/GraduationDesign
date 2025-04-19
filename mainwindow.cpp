@@ -1,8 +1,9 @@
 #include <cassert>
 
+#include <QFileDialog>
+#include <QInputDialog>
 #include <QMessageBox>
 #include <QPixmap>
-#include <QFileDialog>
 #include <QString>
 
 #include "util/util.hpp"
@@ -53,8 +54,7 @@ void MainWindow::on_drawButton_clicked() {
     auto shapeIdx = ui->shapeComboBox->currentIndex();
     if (processor->drawShape(ShapeType::fromInt(shapeIdx))) {
         ui->outputLabel->updateFrame();
-        const auto &paramPairs = processor->getParamPairs();
-        displayParamPairs(paramPairs);
+        displayParamPairs( processor->getParamPairs());
     }
 }
 
@@ -70,6 +70,13 @@ void MainWindow::on_removeLastPointButton_clicked() {
 
 void MainWindow::on_removeCurrentShapeButton_clicked() {
     processor->removeCurrentShape();
+    ui->outputLabel->updateFrame();
+}
+
+void MainWindow::on_resizeButton_clicked() {
+    if (processor->circleResize())
+        QInfo("尺寸校正成功!");
+    displayParamPairs(processor->getParamPairs());
     ui->outputLabel->updateFrame();
 }
 

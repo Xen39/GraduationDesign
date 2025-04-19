@@ -94,5 +94,6 @@ target_link_libraries(GraduationDesign PUBLIC uiLib)
 add_subdirectory(util)
 target_link_libraries(GraduationDesign PUBLIC utilLib)
 
+# program/
 add_subdirectory(program)
 target_link_libraries(GraduationDesign PUBLIC programLib)

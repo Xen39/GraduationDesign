@@ -4,6 +4,7 @@
 #include <vector>
 
 #include "program/shape/Polyline.hpp"
+#include "util/util.hpp"
 
 namespace program::shape {
     class ConnectedPolyline : public Polyline {
@@ -17,7 +18,7 @@ namespace program::shape {
         std::vector<std::pair<std::string, std::string>> getParamPairs() const override {
             return {
                     {"图形",   shapeName()},
-                    {"总长度", std::to_string(length())},
+                    {"总长度", std::to_string(util::getRatio() * length())},
             };
         }
 

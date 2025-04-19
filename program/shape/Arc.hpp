@@ -15,7 +15,7 @@ namespace program::shape {
             return {
                     {"图形",           shapeName()},
                     {"圆心",           util::to_string(center)},
-                    {"半径",           std::to_string(radius)},
+                    {"半径",           std::to_string(radius * util::getRatio())},
                     {"起始角度(360°)", std::to_string(startAngle)},
                     {"结束角度(360°)", std::to_string(endAngle)}
             };

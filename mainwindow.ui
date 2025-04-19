@@ -1,383 +1,390 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
-    <class>MainWindow</class>
-    <widget class="QMainWindow" name="MainWindow">
-        <property name="geometry">
-            <rect>
-                <x>0</x>
-                <y>0</y>
-                <width>1217</width>
-                <height>680</height>
-            </rect>
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1217</width>
+    <height>680</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QHBoxLayout" name="horizontalLayout">
+    <item>
+     <layout class="QVBoxLayout" name="verticalLayout">
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout_2">
+        <property name="sizeConstraint">
+         <enum>QLayout::SetFixedSize</enum>
         </property>
-        <property name="windowTitle">
-            <string>MainWindow</string>
-        </property>
-        <widget class="QWidget" name="centralwidget">
-            <layout class="QHBoxLayout" name="horizontalLayout">
-                <item>
-                    <layout class="QVBoxLayout" name="verticalLayout">
-                        <item>
-                            <layout class="QHBoxLayout" name="horizontalLayout_2">
-                                <property name="sizeConstraint">
-                                    <enum>QLayout::SetFixedSize</enum>
-                                </property>
-                                <item>
-                                    <widget class="ui::InputLabel" name="inputLabel">
-                                        <property name="sizePolicy">
-                                            <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
-                                                <horstretch>0</horstretch>
-                                                <verstretch>0</verstretch>
-                                            </sizepolicy>
-                                        </property>
-                                        <property name="minimumSize">
-                                            <size>
-                                                <width>500</width>
-                                                <height>500</height>
-                                            </size>
-                                        </property>
-                                        <property name="text">
-                                            <string>拖动图片到此处</string>
-                                        </property>
-                                        <property name="alignment">
-                                            <set>Qt::AlignCenter</set>
-                                        </property>
-                                    </widget>
-                                </item>
-                                <item>
-                                    <widget class="ui::OutputLabel" name="outputLabel">
-                                        <property name="sizePolicy">
-                                            <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
-                                                <horstretch>0</horstretch>
-                                                <verstretch>0</verstretch>
-                                            </sizepolicy>
-                                        </property>
-                                        <property name="minimumSize">
-                                            <size>
-                                                <width>500</width>
-                                                <height>500</height>
-                                            </size>
-                                        </property>
-                                        <property name="text">
-                                            <string>结果展示</string>
-                                        </property>
-                                        <property name="alignment">
-                                            <set>Qt::AlignCenter</set>
-                                        </property>
-                                    </widget>
-                                </item>
-                                <item>
-                                    <layout class="QGridLayout" name="detailLayout">
-                                        <item row="1" column="0">
-                                            <widget class="QLabel" name="name1Label">
-                                                <property name="text">
-                                                    <string/>
-                                                </property>
-                                            </widget>
-                                        </item>
-                                        <item row="5" column="0">
-                                            <widget class="QLabel" name="name5Label">
-                                                <property name="text">
-                                                    <string/>
-                                                </property>
-                                            </widget>
-                                        </item>
-                                        <item row="0" column="1">
-                                            <widget class="QLabel" name="value0Label">
-                                                <property name="text">
-                                                    <string>参数值</string>
-                                                </property>
-                                            </widget>
-                                        </item>
-                                        <item row="0" column="0">
-                                            <widget class="QLabel" name="name0Label">
-                                                <property name="text">
-                                                    <string>参数名</string>
-                                                </property>
-                                            </widget>
-                                        </item>
-                                        <item row="6" column="1">
-                                            <widget class="QLabel" name="value6Label">
-                                                <property name="text">
-                                                    <string/>
-                                                </property>
-                                            </widget>
-                                        </item>
-                                        <item row="2" column="0">
-                                            <widget class="QLabel" name="name2Label">
-                                                <property name="text">
-                                                    <string/>
-                                                </property>
-                                            </widget>
-                                        </item>
-                                        <item row="3" column="0">
-                                            <widget class="QLabel" name="name3Label">
-                                                <property name="text">
-                                                    <string/>
-                                                </property>
-                                            </widget>
-                                        </item>
-                                        <item row="1" column="1">
-                                            <widget class="QLabel" name="value1Label">
-                                                <property name="text">
-                                                    <string/>
-                                                </property>
-                                            </widget>
-                                        </item>
-                                        <item row="2" column="1">
-                                            <widget class="QLabel" name="value2Label">
-                                                <property name="text">
-                                                    <string/>
-                                                </property>
-                                            </widget>
-                                        </item>
-                                        <item row="3" column="1">
-                                            <widget class="QLabel" name="value3Label">
-                                                <property name="text">
-                                                    <string/>
-                                                </property>
-                                            </widget>
-                                        </item>
-                                        <item row="5" column="1">
-                                            <widget class="QLabel" name="value5Label">
-                                                <property name="text">
-                                                    <string/>
-                                                </property>
-                                            </widget>
-                                        </item>
-                                        <item row="4" column="0">
-                                            <widget class="QLabel" name="name4Label">
-                                                <property name="text">
-                                                    <string/>
-                                                </property>
-                                            </widget>
-                                        </item>
-                                        <item row="6" column="0">
-                                            <widget class="QLabel" name="name6Label">
-                                                <property name="text">
-                                                    <string/>
-                                                </property>
-                                            </widget>
-                                        </item>
-                                        <item row="4" column="1">
-                                            <widget class="QLabel" name="value4Label">
-                                                <property name="text">
-                                                    <string/>
-                                                </property>
-                                            </widget>
-                                        </item>
-                                        <item row="7" column="0">
-                                            <widget class="QLabel" name="name7Label">
-                                                <property name="text">
-                                                    <string/>
-                                                </property>
-                                            </widget>
-                                        </item>
-                                        <item row="7" column="1">
-                                            <widget class="QLabel" name="value7Label">
-                                                <property name="text">
-                                                    <string/>
-                                                </property>
-                                            </widget>
-                                        </item>
-                                    </layout>
-                                </item>
-                            </layout>
-                        </item>
-                        <item>
-                            <layout class="QGridLayout" name="gridLayout">
-                                <property name="sizeConstraint">
-                                    <enum>QLayout::SetDefaultConstraint</enum>
-                                </property>
-                                <property name="leftMargin">
-                                    <number>50</number>
-                                </property>
-                                <property name="topMargin">
-                                    <number>10</number>
-                                </property>
-                                <property name="rightMargin">
-                                    <number>50</number>
-                                </property>
-                                <property name="bottomMargin">
-                                    <number>10</number>
-                                </property>
-                                <property name="spacing">
-                                    <number>0</number>
-                                </property>
-                                <item row="3" column="1">
-                                    <widget class="QPushButton" name="removeLastPointButton">
-                                        <property name="text">
-                                            <string>删除上个点</string>
-                                        </property>
-                                    </widget>
-                                </item>
-                                <item row="6" column="1">
-                                    <widget class="QPushButton" name="removeCurrentShapeButton">
-                                        <property name="text">
-                                            <string>删除当前图形</string>
-                                        </property>
-                                    </widget>
-                                </item>
-                                <item row="3" column="2">
-                                    <widget class="QPushButton" name="previousShapeButton">
-                                        <property name="text">
-                                            <string>选择上个图形</string>
-                                        </property>
-                                    </widget>
-                                </item>
-                                <item row="3" column="3">
-                                    <widget class="QComboBox" name="shapeComboBox">
-                                        <item>
-                                            <property name="text">
-                                                <string>圆弧(三点)</string>
-                                            </property>
-                                        </item>
-                                        <item>
-                                            <property name="text">
-                                                <string>圆(三点)</string>
-                                            </property>
-                                        </item>
-                                        <item>
-                                            <property name="text">
-                                                <string>多段折线(首尾相联)(多点)</string>
-                                            </property>
-                                        </item>
-                                        <item>
-                                            <property name="text">
-                                                <string>轮廓线(一点)</string>
-                                            </property>
-                                        </item>
-                                        <item>
-                                            <property name="text">
-                                                <string>直线(两点)</string>
-                                            </property>
-                                        </item>
-                                        <item>
-                                            <property name="text">
-                                                <string>线段(两点)</string>
-                                            </property>
-                                        </item>
-                                        <item>
-                                            <property name="text">
-                                                <string>平行四边形(四角)</string>
-                                            </property>
-                                        </item>
-                                        <item>
-                                            <property name="text">
-                                                <string>多段折线(多点)</string>
-                                            </property>
-                                        </item>
-                                        <item>
-                                            <property name="text">
-                                                <string>矩形(四角)</string>
-                                            </property>
-                                        </item>
-                                    </widget>
-                                </item>
-                                <item row="3" column="4">
-                                    <widget class="QCheckBox" name="showContourCheckBox">
-                                        <property name="text">
-                                            <string>显示轮廓</string>
-                                        </property>
-                                    </widget>
-                                </item>
-                                <item row="1" column="4">
-                                    <widget class="QCheckBox" name="toNearestContourPointCheckBox">
-                                        <property name="text">
-                                            <string>识别为最近轮廓点</string>
-                                        </property>
-                                        <property name="checked">
-                                            <bool>true</bool>
-                                        </property>
-                                    </widget>
-                                </item>
-                                <item row="3" column="0">
-                                    <widget class="QPushButton" name="runButton">
-                                        <property name="text">
-                                            <string>运行</string>
-                                        </property>
-                                    </widget>
-                                </item>
-                                <item row="5" column="1">
-                                    <widget class="QPushButton" name="removeAllPointsButton">
-                                        <property name="text">
-                                            <string>清空所有点</string>
-                                        </property>
-                                    </widget>
-                                </item>
-                                <item row="5" column="0">
-                                    <widget class="QPushButton" name="cameraButton">
-                                        <property name="text">
-                                            <string>摄像头</string>
-                                        </property>
-                                    </widget>
-                                </item>
-                                <item row="5" column="2">
-                                    <widget class="QPushButton" name="nextShapeButton">
-                                        <property name="text">
-                                            <string>选择下个图形</string>
-                                        </property>
-                                    </widget>
-                                </item>
-                                <item row="5" column="3">
-                                    <widget class="QPushButton" name="drawButton">
-                                        <property name="text">
-                                            <string>绘制图形</string>
-                                        </property>
-                                    </widget>
-                                </item>
-                                <item row="5" column="4">
-                                    <widget class="QCheckBox" name="showPointCheckBox">
-                                        <property name="text">
-                                            <string>显示点</string>
-                                        </property>
-                                        <property name="checked">
-                                            <bool>true</bool>
-                                        </property>
-                                    </widget>
-                                </item>
-                            </layout>
-                        </item>
-                    </layout>
-                </item>
-            </layout>
-        </widget>
-        <widget class="QMenuBar" name="menubar">
-            <property name="geometry">
-                <rect>
-                    <x>0</x>
-                    <y>0</y>
-                    <width>1217</width>
-                    <height>20</height>
-                </rect>
-            </property>
-            <widget class="QMenu" name="menu">
-                <property name="title">
-                    <string>选项</string>
-                </property>
-                <addaction name="actionaa"/>
-            </widget>
-            <addaction name="menu"/>
-        </widget>
-        <widget class="QStatusBar" name="statusbar"/>
-        <action name="actionaa">
+        <item>
+         <widget class="ui::InputLabel" name="inputLabel">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>500</width>
+            <height>500</height>
+           </size>
+          </property>
+          <property name="text">
+           <string>拖动图片到此处</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="ui::OutputLabel" name="outputLabel">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>500</width>
+            <height>500</height>
+           </size>
+          </property>
+          <property name="text">
+           <string>结果展示</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <layout class="QGridLayout" name="detailLayout">
+          <item row="1" column="0">
+           <widget class="QLabel" name="name1Label">
             <property name="text">
-                <string>结果结果图片为</string>
+             <string/>
             </property>
-        </action>
-    </widget>
-    <customwidgets>
-        <customwidget>
-            <class>ui::InputLabel</class>
-            <extends>QLabel</extends>
-            <header>ui/InputLabel.hpp</header>
-        </customwidget>
-        <customwidget>
-            <class>ui::OutputLabel</class>
-            <extends>QLabel</extends>
-            <header>ui/OutputLabel.hpp</header>
-        </customwidget>
-    </customwidgets>
-    <resources/>
-    <connections/>
+           </widget>
+          </item>
+          <item row="5" column="0">
+           <widget class="QLabel" name="name5Label">
+            <property name="text">
+             <string/>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QLabel" name="value0Label">
+            <property name="text">
+             <string>参数值</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="0">
+           <widget class="QLabel" name="name0Label">
+            <property name="text">
+             <string>参数名</string>
+            </property>
+           </widget>
+          </item>
+          <item row="6" column="1">
+           <widget class="QLabel" name="value6Label">
+            <property name="text">
+             <string/>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="0">
+           <widget class="QLabel" name="name2Label">
+            <property name="text">
+             <string/>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="0">
+           <widget class="QLabel" name="name3Label">
+            <property name="text">
+             <string/>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="QLabel" name="value1Label">
+            <property name="text">
+             <string/>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="1">
+           <widget class="QLabel" name="value2Label">
+            <property name="text">
+             <string/>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="1">
+           <widget class="QLabel" name="value3Label">
+            <property name="text">
+             <string/>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="1">
+           <widget class="QLabel" name="value5Label">
+            <property name="text">
+             <string/>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="0">
+           <widget class="QLabel" name="name4Label">
+            <property name="text">
+             <string/>
+            </property>
+           </widget>
+          </item>
+          <item row="6" column="0">
+           <widget class="QLabel" name="name6Label">
+            <property name="text">
+             <string/>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="1">
+           <widget class="QLabel" name="value4Label">
+            <property name="text">
+             <string/>
+            </property>
+           </widget>
+          </item>
+          <item row="7" column="0">
+           <widget class="QLabel" name="name7Label">
+            <property name="text">
+             <string/>
+            </property>
+           </widget>
+          </item>
+          <item row="7" column="1">
+           <widget class="QLabel" name="value7Label">
+            <property name="text">
+             <string/>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <layout class="QGridLayout" name="gridLayout">
+        <property name="sizeConstraint">
+         <enum>QLayout::SetDefaultConstraint</enum>
+        </property>
+        <property name="leftMargin">
+         <number>50</number>
+        </property>
+        <property name="topMargin">
+         <number>10</number>
+        </property>
+        <property name="rightMargin">
+         <number>50</number>
+        </property>
+        <property name="bottomMargin">
+         <number>10</number>
+        </property>
+        <property name="spacing">
+         <number>0</number>
+        </property>
+        <item row="3" column="4">
+         <widget class="QComboBox" name="shapeComboBox">
+          <item>
+           <property name="text">
+            <string>圆弧(三点)</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>圆(三点)</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>多段折线(首尾相联)(多点)</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>轮廓线(一点)</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>直线(两点)</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>线段(两点)</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>平行四边形(四角)</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>多段折线(多点)</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>矩形(四角)</string>
+           </property>
+          </item>
+         </widget>
+        </item>
+        <item row="5" column="1">
+         <widget class="QPushButton" name="removeAllPointsButton">
+          <property name="text">
+           <string>清空所有点</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="5">
+         <widget class="QCheckBox" name="toNearestContourPointCheckBox">
+          <property name="text">
+           <string>识别为最近轮廓点</string>
+          </property>
+          <property name="checked">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="0">
+         <widget class="QPushButton" name="runButton">
+          <property name="text">
+           <string>运行</string>
+          </property>
+         </widget>
+        </item>
+        <item row="5" column="2">
+         <widget class="QPushButton" name="nextShapeButton">
+          <property name="text">
+           <string>选择下个图形</string>
+          </property>
+         </widget>
+        </item>
+        <item row="6" column="1">
+         <widget class="QPushButton" name="removeCurrentShapeButton">
+          <property name="text">
+           <string>删除当前图形</string>
+          </property>
+         </widget>
+        </item>
+        <item row="5" column="4">
+         <widget class="QPushButton" name="drawButton">
+          <property name="text">
+           <string>绘制图形</string>
+          </property>
+         </widget>
+        </item>
+        <item row="5" column="5">
+         <widget class="QCheckBox" name="showPointCheckBox">
+          <property name="text">
+           <string>显示点</string>
+          </property>
+          <property name="checked">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="5">
+         <widget class="QCheckBox" name="showContourCheckBox">
+          <property name="text">
+           <string>显示轮廓</string>
+          </property>
+         </widget>
+        </item>
+        <item row="5" column="0">
+         <widget class="QPushButton" name="cameraButton">
+          <property name="text">
+           <string>摄像头</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="1">
+         <widget class="QPushButton" name="removeLastPointButton">
+          <property name="text">
+           <string>删除上个点</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="2">
+         <widget class="QPushButton" name="previousShapeButton">
+          <property name="text">
+           <string>选择上个图形</string>
+          </property>
+         </widget>
+        </item>
+        <item row="6" column="4">
+         <widget class="QPushButton" name="resizeButton">
+          <property name="text">
+           <string>比例校正(单圆校正)</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1217</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menu">
+    <property name="title">
+     <string>选项</string>
+    </property>
+    <addaction name="actionaa"/>
+   </widget>
+   <addaction name="menu"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <action name="actionaa">
+   <property name="text">
+    <string>结果结果图片为</string>
+   </property>
+  </action>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>ui::InputLabel</class>
+   <extends>QLabel</extends>
+   <header>ui/InputLabel.hpp</header>
+  </customwidget>
+  <customwidget>
+   <class>ui::OutputLabel</class>
+   <extends>QLabel</extends>
+   <header>ui/OutputLabel.hpp</header>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections/>
 </ui>

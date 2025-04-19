@@ -16,7 +16,8 @@ namespace program::shape {
             return {
                     {"图形",  shapeName()},
                     {"端点1", util::to_string(v1)},
-                    {"端点2", util::to_string(v2)}
+                    {"端点2", util::to_string(v2)},
+                    {"长度", std::to_string(util::getRatio() * length())}
             };
         }
 

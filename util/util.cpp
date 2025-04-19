@@ -4,6 +4,8 @@
 
 #include <QMessageBox>
 
+#include "macros.hpp"
+
 using namespace std;
 
 namespace util {
@@ -125,4 +127,14 @@ namespace util {
         return angle;
     }
 
+    double ratio = 1.0;
+
+    void setRatio(double newRatio) {
+        CHECK(newRatio > 0, "ratio must be greater than 0: " + std::to_string(newRatio));
+        ratio = newRatio;
+    }
+
+    double getRatio() {
+        return ratio;
+    }
 }

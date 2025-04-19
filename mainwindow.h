@@ -34,6 +34,8 @@ private slots:
 
     void on_removeCurrentShapeButton_clicked();
 
+    void on_resizeButton_clicked();
+
     void on_previousShapeButton_clicked();
 
     void on_nextShapeButton_clicked();

@@ -3,12 +3,8 @@
 using namespace std;
 
 namespace program::shape {
-    ContourCurve::ContourCurve(shared_ptr < vector < vector < cv::Point
-    >>> contours,
-    const cv::Point &target
-    )
-    :
-    contours(contours) {
+    ContourCurve::ContourCurve(shared_ptr<vector<vector<cv::Point>>> contours,const cv::Point &target)
+        :contours(contours) {
             contourIdx = -1;
             for (int i = 0;i<contours->size();++i) {
                 for (const auto &p: contours->at(i)) {

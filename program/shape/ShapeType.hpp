@@ -22,6 +22,8 @@ namespace program::shape {
         };
 
     public:
+        ShapeType(Type type) : type(type) {}
+
         static ShapeType fromInt(int idx) {
             if (idx < static_cast<int>(Type::First) || idx > static_cast<int>(Type::Last))
                 throw std::runtime_error("shape type idx out of range: " + std::to_string(idx));
@@ -37,9 +39,8 @@ namespace program::shape {
         static constexpr Type Parallelogram = Type::Parallelogram;
         static constexpr Type Polyline = Type::Polyline;
         static constexpr Type Rectangle = Type::Rectangle;
-    private:
-        ShapeType(Type type) : type(type) {}
 
+    private:
         Type type;
 
         friend class ShapeFactory;
