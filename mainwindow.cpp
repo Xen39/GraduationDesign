@@ -75,10 +75,18 @@ void MainWindow::on_removeCurrentShapeButton_clicked() {
 }
 
 void MainWindow::on_resizeButton_clicked() {
-    if (processor->circleResize())
+    if (processor->circleResize()) {
         QInfo("尺寸校正成功!");
+        displayParamPairs(processor->getParamPairs());
+        ui->resizeLabel->setText(QString::fromStdString("当前缩放比例:" + std::to_string(util::getRatio())));
+        ui->outputLabel->updateFrame();
+    }
+}
+
+void MainWindow::on_resizeDefaultButton_clicked() {
+    util::setRatio(1.0);
+    ui->resizeLabel->setText(QString::fromStdString("当前缩放比例:" + std::to_string(util::getRatio())));
     displayParamPairs(processor->getParamPairs());
-    ui->outputLabel->updateFrame();
 }
 
 void MainWindow::on_toNearestContourPointCheckBox_stateChanged(int val) {

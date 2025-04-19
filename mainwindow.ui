@@ -260,16 +260,6 @@
           </property>
          </widget>
         </item>
-        <item row="1" column="5">
-         <widget class="QCheckBox" name="toNearestContourPointCheckBox">
-          <property name="text">
-           <string>识别为最近轮廓点</string>
-          </property>
-          <property name="checked">
-           <bool>true</bool>
-          </property>
-         </widget>
-        </item>
         <item row="3" column="0">
          <widget class="QPushButton" name="runButton">
           <property name="text">
@@ -295,23 +285,6 @@
          <widget class="QPushButton" name="drawButton">
           <property name="text">
            <string>绘制图形</string>
-          </property>
-         </widget>
-        </item>
-        <item row="5" column="5">
-         <widget class="QCheckBox" name="showPointCheckBox">
-          <property name="text">
-           <string>显示点</string>
-          </property>
-          <property name="checked">
-           <bool>true</bool>
-          </property>
-         </widget>
-        </item>
-        <item row="3" column="5">
-         <widget class="QCheckBox" name="showContourCheckBox">
-          <property name="text">
-           <string>显示轮廓</string>
           </property>
          </widget>
         </item>
@@ -342,6 +315,51 @@
            <string>比例校正(单圆校正)</string>
           </property>
          </widget>
+        </item>
+        <item row="6" column="5">
+         <widget class="QCheckBox" name="showPointCheckBox">
+          <property name="text">
+           <string>显示点</string>
+          </property>
+          <property name="checked">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="5" column="5">
+         <widget class="QCheckBox" name="showContourCheckBox">
+          <property name="text">
+           <string>显示轮廓</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="5">
+         <widget class="QCheckBox" name="toNearestContourPointCheckBox">
+          <property name="text">
+           <string>识别为最近轮廓点</string>
+          </property>
+          <property name="checked">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="6" column="0">
+         <layout class="QHBoxLayout" name="horizontalLayout_3">
+          <item>
+           <widget class="QLabel" name="resizeLabel">
+            <property name="text">
+             <string>当前缩放比例:1.0</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="resizeDefaultButton">
+            <property name="text">
+             <string>恢复默认</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
         </item>
        </layout>
       </item>

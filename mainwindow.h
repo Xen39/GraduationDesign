@@ -48,6 +48,8 @@ private slots:
 
     void on_actionaa_triggered();
 
+    void on_resizeDefaultButton_clicked();
+
 private:
     void displayParamPairs(std::vector<std::pair<std::string, std::string>> paramPairs);
 
