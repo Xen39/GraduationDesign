@@ -16,7 +16,6 @@ namespace program::shape {
 
         virtual std::vector<std::pair<std::string, std::string>> getParamPairs() const override {
             return {
-                    {"图形", shapeName()},
             };
         }
 

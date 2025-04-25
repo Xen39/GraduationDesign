@@ -29,6 +29,10 @@ namespace program::shape {
 
         void clear();
 
+        [[nodiscard]] std::vector<std::shared_ptr<Shape>>::const_iterator begin() const { return shapes.begin(); }
+
+        [[nodiscard]] std::vector<std::shared_ptr<Shape>>::const_iterator end() const { return shapes.end(); }
+
     private:
         void highlight(const std::shared_ptr<Shape> &shape);
 

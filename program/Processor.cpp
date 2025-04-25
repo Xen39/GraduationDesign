@@ -97,7 +97,8 @@ namespace program {
         }
         int pictureLen = circle->getRadius();
         bool ok;
-        double realLen = QInputDialog::getDouble(nullptr, "", "请输入圆的实际半径", pictureLen, 0.01, 2147483647, 2, &ok);
+        double realLen = QInputDialog::getDouble(nullptr, "", "请输入圆的实际半径", pictureLen, 0.01, 2147483647, 2,
+                                                 &ok);
         if (!ok)
             return false;
         util::setRatio(realLen / pictureLen);

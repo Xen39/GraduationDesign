@@ -46,12 +46,14 @@ private slots:
 
     void on_showPointCheckBox_stateChanged(int val);
 
-    void on_actionaa_triggered();
+    void on_saveResultPicture_triggered();
+
+    void on_saveShapeParams_triggered();
 
     void on_resizeDefaultButton_clicked();
 
 private:
-    void displayParamPairs(std::vector<std::pair<std::string, std::string>> paramPairs);
+    void displayShapeInfo(const std::shared_ptr<program::shape::Shape> shape);
 
     std::vector<std::pair<QLabel *, QLabel *>> displayParis;
     Ui::MainWindow *ui;

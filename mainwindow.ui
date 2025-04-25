@@ -380,14 +380,20 @@
     <property name="title">
      <string>选项</string>
     </property>
-    <addaction name="actionaa"/>
+    <addaction name="saveResultPicture"/>
+    <addaction name="saveShapeParams"/>
    </widget>
    <addaction name="menu"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
-  <action name="actionaa">
+  <action name="saveResultPicture">
    <property name="text">
-    <string>结果结果图片为</string>
+    <string>保存结果图片为</string>
+   </property>
+  </action>
+  <action name="saveShapeParams">
+   <property name="text">
+    <string>保存图形参数至</string>
    </property>
   </action>
  </widget>

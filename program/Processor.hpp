@@ -28,14 +28,7 @@ namespace program {
 
         void setShowPoints(bool b) { this->showPoints = b; }
 
-        std::vector<std::pair<std::string, std::string>> getParamPairs() {
-            auto shape = shapes.curShape();
-            if (shape == nullptr) {
-                return {};
-            } else {
-                return shape->getParamPairs();
-            }
-        }
+        auto getShapes() { return shapes; }
 
         void previousShape() { shapes.previousShape(); }
 
