@@ -156,9 +156,9 @@ void MainWindow::displayShapeInfo(const shared_ptr<Shape> shape) {
     displayParis[0].first->setText("图形");
     displayParis[0].second->setText(shape->shapeName());
     size_t i;
-    for (i = 1; i < paramPairs.size() && i < displayParis.size(); ++i) {
+    for (i = 1; i - 1 < paramPairs.size() && i < displayParis.size(); ++i) {
         auto &displayPair = displayParis[i];
-        auto &paramPair = paramPairs[i];
+        auto &paramPair = paramPairs[i - 1];
         displayPair.first->setText(QString::fromStdString(paramPair.first));
         displayPair.second->setText(QString::fromStdString(paramPair.second));
     }
