@@ -49,46 +49,42 @@ void MainWindow::on_runButton_clicked() {
     if (originPixmap.isNull())
         return;
     processor->preprocess(QPixmapToCvMat(originPixmap));
-    ui->outputLabel->updateFrame();
+    updateWindow();
 }
 
 void MainWindow::on_drawButton_clicked() {
     auto shapeIdx = ui->shapeComboBox->currentIndex();
-    if (processor->drawShape(ShapeType::fromInt(shapeIdx))) {
-        ui->outputLabel->updateFrame();
-        displayShapeInfo(processor->getShapes().curShape());
-    }
+    if (processor->drawShape(ShapeType::fromInt(shapeIdx)))
+        updateWindow();
 }
 
 void MainWindow::on_removeAllPointsButton_clicked() {
     processor->removeAllPoints();
-    ui->outputLabel->updateFrame();
+    updateWindow();
 }
 
 void MainWindow::on_removeLastPointButton_clicked() {
     processor->removeLastPoint();
-    ui->outputLabel->updateFrame();
+    updateWindow();
 }
 
 void MainWindow::on_removeCurrentShapeButton_clicked() {
     processor->removeCurrentShape();
-    displayShapeInfo(processor->getShapes().curShape());
-    ui->outputLabel->updateFrame();
+    updateWindow();
 }
 
 void MainWindow::on_resizeButton_clicked() {
     if (processor->circleResize()) {
-        QInfo("尺寸校正成功!");
-        displayShapeInfo(processor->getShapes().curShape());
+        updateWindow();
         ui->resizeLabel->setText(QString::fromStdString("当前缩放比例:" + std::to_string(util::getRatio())));
-        ui->outputLabel->updateFrame();
+        QInfo("尺寸校正成功!");
     }
 }
 
 void MainWindow::on_resizeDefaultButton_clicked() {
     util::setRatio(1.0);
     ui->resizeLabel->setText(QString::fromStdString("当前缩放比例:" + std::to_string(util::getRatio())));
-    displayShapeInfo(processor->getShapes().curShape());
+    updateWindow();
 }
 
 void MainWindow::on_toNearestContourPointCheckBox_stateChanged(int val) {
@@ -97,12 +93,12 @@ void MainWindow::on_toNearestContourPointCheckBox_stateChanged(int val) {
 
 void MainWindow::on_showContourCheckBox_stateChanged(int val) {
     processor->setShowContours(ui->showContourCheckBox->isChecked());
-    ui->outputLabel->updateFrame();
+    updateWindow();
 }
 
 void MainWindow::on_showPointCheckBox_stateChanged(int val) {
     processor->setShowPoints(ui->showPointCheckBox->isChecked());
-    ui->outputLabel->updateFrame();
+    updateWindow();
 }
 
 void MainWindow::on_saveResultPicture_triggered() {
@@ -146,8 +142,20 @@ void MainWindow::on_saveShapeParams_triggered() {
     }
 }
 
+void MainWindow::on_shapeListWidget_itemClicked(QListWidgetItem *item) {
+    size_t idx = ui->shapeListWidget->row(item);
+    processor->getShapes().selectShape(idx);
+    updateWindow();
+}
+
 void MainWindow::displayShapeInfo(const shared_ptr<Shape> shape) {
-    CHECK(shape != nullptr, "nullptr shape in displayShapeInfo()");
+    if (shape == nullptr) {
+        for (auto &[nameLabel, valueLabel]: displayParis) {
+            nameLabel->setText("");
+            valueLabel->setText("");
+        }
+        return;
+    }
     const auto &paramPairs = shape->getParamPairs();
     if (paramPairs.size() + 1 > displayParis.size()) {
         QWarn("Too many shape param pairs!");
@@ -169,14 +177,28 @@ void MainWindow::displayShapeInfo(const shared_ptr<Shape> shape) {
     }
 }
 
-void MainWindow::on_previousShapeButton_clicked() {
-    processor->previousShape();
-    displayShapeInfo(processor->getShapes().curShape());
-    ui->outputLabel->updateFrame();
+void MainWindow::displayShapeList() {
+    ui->shapeListWidget->clear();
+    int idx = 0;
+    for (auto iter: processor->getShapes()) {
+        ostringstream oss;
+        oss << "编号 " << ++idx << "    图形 " << iter->shapeName();
+        QListWidgetItem *item = new QListWidgetItem(QString::fromStdString(oss.str()), ui->shapeListWidget);
+    }
+    static constexpr QColor unselectedColor(255,255,255);
+    static constexpr QColor selectedColor(200,200,200);
+    for (int i = 0; i < ui->shapeListWidget->count(); ++i) {
+        ui->shapeListWidget->item(i)->setBackground(unselectedColor);
+    }
+    if (processor->getShapes().numShapes() > 0) {
+        auto curIdx = processor->getShapes().currentIdx();
+        assert (0 <= curIdx && curIdx < ui->shapeListWidget->count());
+        ui->shapeListWidget->item(curIdx)->setBackground(selectedColor);
+    }
 }
 
-void MainWindow::on_nextShapeButton_clicked() {
-    processor->nextShape();
-    displayShapeInfo(processor->getShapes().curShape());
+void MainWindow::updateWindow() {
     ui->outputLabel->updateFrame();
+    displayShapeInfo(processor->getShapes().curShape());
+    displayShapeList();
 }

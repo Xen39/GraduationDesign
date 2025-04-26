@@ -3,6 +3,7 @@
 #include <limits>
 
 #include "util/util.hpp"
+#include "util/macros.hpp"
 
 using namespace std;
 using namespace util;
@@ -26,9 +27,7 @@ namespace program::shape {
 
     void ShapeContainer::addShape(const shared_ptr <Shape> &shape) {
         shapes.push_back(shape);
-        if (curIdx != INVALID) {
-            dehighlight(shapes[curIdx]);
-        }
+        dehighlightAll();
         curIdx = static_cast<int>(numShapes()) - 1;
         highlight(shapes[curIdx]);
     }
@@ -44,8 +43,9 @@ namespace program::shape {
             curIdx = INVALID;
             return;
         }
-        if (curIdx == numShapes())
-            curIdx--;
+        if (curIdx >= numShapes())
+            curIdx = numShapes() - 1;
+        dehighlightAll();
         highlight(shapes[curIdx]);
     }
 
@@ -53,28 +53,11 @@ namespace program::shape {
         return shapes.size();
     }
 
-    void ShapeContainer::previousShape() {
-        if (shapes.empty()) {
-            assert(curIdx == INVALID);
-            return;
-        }
-        if (curIdx > 0) {
-            dehighlight(shapes[curIdx]);
-            curIdx--;
-            highlight(shapes[curIdx]);
-        }
-    }
-
-    void ShapeContainer::nextShape() {
-        if (shapes.empty()) {
-            assert(curIdx == INVALID);
-            return;
-        }
-        if (curIdx < numShapes() - 1) {
-            dehighlight(shapes[curIdx]);
-            curIdx++;
-            highlight(shapes[curIdx]);
-        }
+    void ShapeContainer::selectShape(size_t idx) {
+        CHECK(0 <= idx && idx < shapes.size(), "shape idx out of range: " + to_string(idx));
+        curIdx = idx;
+        dehighlightAll();
+        highlight(shapes[curIdx]);
     }
 
     void ShapeContainer::draw(cv::Mat &mat) {
@@ -100,6 +83,11 @@ namespace program::shape {
     void ShapeContainer::dehighlight(const std::shared_ptr<Shape> &shape) {
         shape->setColor(DEFAULT_COLOR);
         shape->setThickness(DEFAULT_THICKNESS);
+    }
+
+    void ShapeContainer::dehighlightAll() {
+        for (auto& shape:shapes)
+            dehighlight(shape);
     }
 
     const cv::Scalar ShapeContainer::DEFAULT_COLOR = GREEN;

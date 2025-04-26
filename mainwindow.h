@@ -3,6 +3,7 @@
 #include <QMainWindow>
 #include <QPushButton>
 #include <InputLabel.hpp>
+#include <QListWidgetItem>
 
 #include "program/Processor.hpp"
 
@@ -36,10 +37,6 @@ private slots:
 
     void on_resizeButton_clicked();
 
-    void on_previousShapeButton_clicked();
-
-    void on_nextShapeButton_clicked();
-
     void on_toNearestContourPointCheckBox_stateChanged(int val);
 
     void on_showContourCheckBox_stateChanged(int val);
@@ -52,8 +49,14 @@ private slots:
 
     void on_resizeDefaultButton_clicked();
 
+    void on_shapeListWidget_itemClicked(QListWidgetItem *item);
+
 private:
     void displayShapeInfo(const std::shared_ptr<program::shape::Shape> shape);
+
+    void displayShapeList();
+
+    void updateWindow();
 
     std::vector<std::pair<QLabel *, QLabel *>> displayParis;
     Ui::MainWindow *ui;

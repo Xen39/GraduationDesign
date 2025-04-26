@@ -13,15 +13,15 @@ namespace program::shape {
 
         std::shared_ptr<Shape> curShape();
 
+        [[nodiscard]] auto currentIdx() const { return curIdx;}
+
         void addShape(const std::shared_ptr<Shape> &shape);
 
         void removeCurShape();
 
         [[nodiscard]] size_t numShapes() const;
 
-        void previousShape();
-
-        void nextShape();
+        void selectShape(size_t idx);
 
         void draw(cv::Mat &mat);
 
@@ -37,6 +37,8 @@ namespace program::shape {
         void highlight(const std::shared_ptr<Shape> &shape);
 
         void dehighlight(const std::shared_ptr<Shape> &shape);
+
+        void dehighlightAll();
 
         std::vector<std::shared_ptr<Shape>> shapes;
         int curIdx;

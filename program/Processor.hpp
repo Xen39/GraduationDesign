@@ -28,11 +28,7 @@ namespace program {
 
         void setShowPoints(bool b) { this->showPoints = b; }
 
-        auto getShapes() { return shapes; }
-
-        void previousShape() { shapes.previousShape(); }
-
-        void nextShape() { shapes.nextShape(); }
+        auto& getShapes() { return shapes; }
 
         void addPoint(cv::Point p);
 
