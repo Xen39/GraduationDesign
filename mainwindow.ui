@@ -13,12 +13,21 @@
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: #303030; color: white;</string>
+  </property>
   <widget class="QWidget" name="centralwidget">
+   <property name="autoFillBackground">
+    <bool>false</bool>
+   </property>
+   <property name="styleSheet">
+    <string notr="true"/>
+   </property>
    <layout class="QHBoxLayout" name="horizontalLayout">
     <item>
-     <layout class="QVBoxLayout" name="verticalLayout">
+     <layout class="QVBoxLayout" name="pictureButtonLayout">
       <item>
-       <layout class="QHBoxLayout" name="horizontalLayout_2">
+       <layout class="QHBoxLayout" name="pictureLayout">
         <property name="sizeConstraint">
          <enum>QLayout::SetFixedSize</enum>
         </property>
@@ -35,6 +44,9 @@
             <width>500</width>
             <height>500</height>
            </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">background-color: #808080; color:black; border-radius: 10px;</string>
           </property>
           <property name="text">
            <string>拖动图片到此处</string>
@@ -58,6 +70,9 @@
             <height>500</height>
            </size>
           </property>
+          <property name="styleSheet">
+           <string notr="true">background-color: #808080; color:black; color:black; border-radius: 10px;</string>
+          </property>
           <property name="text">
            <string>结果展示</string>
           </property>
@@ -69,7 +84,7 @@
        </layout>
       </item>
       <item>
-       <layout class="QGridLayout" name="gridLayout">
+       <layout class="QGridLayout" name="buttonLayout" columnstretch="3,3,3,2">
         <property name="sizeConstraint">
          <enum>QLayout::SetDefaultConstraint</enum>
         </property>
@@ -88,15 +103,23 @@
         <property name="spacing">
          <number>0</number>
         </property>
-        <item row="5" column="1">
+        <item row="1" column="1">
          <widget class="QPushButton" name="removeAllPointsButton">
+          <property name="styleSheet">
+           <string notr="true">background-color: #c0c0c0; color: black; margin: 5px 50px; height: 18px; border-radius: 3px;</string>
+          </property>
           <property name="text">
            <string>清空所有点</string>
           </property>
          </widget>
         </item>
-        <item row="3" column="3">
+        <item row="0" column="2">
          <widget class="QComboBox" name="shapeComboBox">
+          <property name="styleSheet">
+           <string notr="true">QComboBox { background-color: #c0c0c0; color: black; margin: 5px 50px; height: 18px; border-radius: 3px; }
+QComboBox::drop-down { subcontrol-origin: padding; subcontrol-position: right center; border-left-width: 1px; border-left-color: #a0a0a0; border-left-style: solid; }
+QComboBox::down-arrow { width: 15px; height: 15px; }</string>
+          </property>
           <item>
            <property name="text">
             <string>圆弧(三点)</string>
@@ -109,7 +132,7 @@
           </item>
           <item>
            <property name="text">
-            <string>多段折线(首尾相联)(多点)</string>
+            <string>多段闭折线(多点)</string>
            </property>
           </item>
           <item>
@@ -144,52 +167,73 @@
           </item>
          </widget>
         </item>
-        <item row="5" column="0">
+        <item row="1" column="0">
          <widget class="QPushButton" name="cameraButton">
+          <property name="styleSheet">
+           <string notr="true">background-color: #c0c0c0; color: black; margin: 5px 50px; height: 18px; border-radius: 3px;</string>
+          </property>
           <property name="text">
            <string>摄像头</string>
           </property>
          </widget>
         </item>
-        <item row="5" column="4">
+        <item row="1" column="3">
          <widget class="QCheckBox" name="showContourCheckBox">
+          <property name="styleSheet">
+           <string notr="true">margin: 5px 50px; height: 18px;</string>
+          </property>
           <property name="text">
            <string>显示轮廓</string>
           </property>
          </widget>
         </item>
-        <item row="6" column="1">
+        <item row="2" column="1">
          <widget class="QPushButton" name="removeCurrentShapeButton">
+          <property name="styleSheet">
+           <string notr="true">background-color: #c0c0c0; color: black; margin: 5px 50px; height: 18px; border-radius: 3px;</string>
+          </property>
           <property name="text">
            <string>删除当前图形</string>
           </property>
          </widget>
         </item>
-        <item row="5" column="3">
+        <item row="1" column="2">
          <widget class="QPushButton" name="drawButton">
+          <property name="styleSheet">
+           <string notr="true">background-color: #c0c0c0; color: black; margin: 5px 50px; height: 18px; border-radius: 3px;</string>
+          </property>
           <property name="text">
            <string>绘制图形</string>
           </property>
          </widget>
         </item>
-        <item row="6" column="3">
+        <item row="2" column="2">
          <widget class="QPushButton" name="resizeButton">
+          <property name="styleSheet">
+           <string notr="true">background-color: #c0c0c0; color: black; margin: 5px 50px; height: 18px; border-radius: 3px;</string>
+          </property>
           <property name="text">
            <string>比例校正(单圆校正)</string>
           </property>
          </widget>
         </item>
-        <item row="3" column="0">
+        <item row="0" column="0">
          <widget class="QPushButton" name="runButton">
+          <property name="styleSheet">
+           <string notr="true">background-color: #c0c0c0; color: black; margin: 5px 50px; height: 18px; border-radius: 3px;</string>
+          </property>
           <property name="text">
            <string>运行</string>
           </property>
          </widget>
         </item>
-        <item row="6" column="0">
+        <item row="2" column="0">
          <layout class="QHBoxLayout" name="horizontalLayout_3">
           <item>
            <widget class="QLabel" name="resizeLabel">
+            <property name="styleSheet">
+             <string notr="true">margin-left: 10px; height: 18px;</string>
+            </property>
             <property name="text">
              <string>当前缩放比例:1.0</string>
             </property>
@@ -197,6 +241,9 @@
           </item>
           <item>
            <widget class="QPushButton" name="resizeDefaultButton">
+            <property name="styleSheet">
+             <string notr="true">background-color: #c0c0c0; color: black; margin-right: 20px; height: 18px; border-radius: 3px;</string>
+            </property>
             <property name="text">
              <string>恢复默认</string>
             </property>
@@ -204,8 +251,11 @@
           </item>
          </layout>
         </item>
-        <item row="3" column="4">
+        <item row="0" column="3">
          <widget class="QCheckBox" name="toNearestContourPointCheckBox">
+          <property name="styleSheet">
+           <string notr="true">margin: 5px 50px; height: 18px;</string>
+          </property>
           <property name="text">
            <string>识别为最近轮廓点</string>
           </property>
@@ -214,8 +264,11 @@
           </property>
          </widget>
         </item>
-        <item row="6" column="4">
+        <item row="2" column="3">
          <widget class="QCheckBox" name="showPointCheckBox">
+          <property name="styleSheet">
+           <string notr="true">margin: 5px 50px; height: 18px;</string>
+          </property>
           <property name="text">
            <string>显示点</string>
           </property>
@@ -224,8 +277,11 @@
           </property>
          </widget>
         </item>
-        <item row="3" column="1">
+        <item row="0" column="1">
          <widget class="QPushButton" name="removeLastPointButton">
+          <property name="styleSheet">
+           <string notr="true">background-color: #c0c0c0; color: black; margin: 5px 50px; height: 18px; border-radius: 3px;</string>
+          </property>
           <property name="text">
            <string>删除上个点</string>
           </property>
@@ -248,6 +304,9 @@
         <width>0</width>
         <height>0</height>
        </size>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: #808080; color:black; border-radius: 10px;</string>
       </property>
       <property name="resizeMode">
        <enum>QListView::Fixed</enum>
@@ -289,6 +348,9 @@
       </item>
       <item row="1" column="0">
        <widget class="QLabel" name="name1Label">
+        <property name="styleSheet">
+         <string notr="true"/>
+        </property>
         <property name="text">
          <string/>
         </property>
@@ -331,6 +393,9 @@
       </item>
       <item row="0" column="0">
        <widget class="QLabel" name="name0Label">
+        <property name="styleSheet">
+         <string notr="true"/>
+        </property>
         <property name="text">
          <string>参数名</string>
         </property>

@@ -17,7 +17,7 @@
 namespace ui {
     class OutputLabel : public QLabel {
     public:
-        OutputLabel(QWidget *widget = nullptr) { setStyleSheet("background-color: lightblue"); }
+        OutputLabel(QWidget *widget = nullptr) { }
 
         void bindProcessor(std::shared_ptr<::program::Processor> processor) { this->processor = processor; }
 

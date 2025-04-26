@@ -17,7 +17,6 @@ namespace ui {
         if (!connect(&cameraTimer, &QTimer::timeout, this, &InputLabel::updateFrame))
             QWarn("Cannot connect cameraTimer with InputLabel::updateFrame");
         setAcceptDrops(true);
-        setStyleSheet("background-color: lightgreen");
     }
 
     bool InputLabel::startCamera() {

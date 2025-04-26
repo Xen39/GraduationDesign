@@ -107,6 +107,8 @@ namespace program {
 
     cv::Mat Processor::curFrame() {
         cv::Mat newFrame = oriMat.clone();
+        if (newFrame.empty())
+            return newFrame;
         shapes.draw(newFrame);
         if (showContours)
             cv::drawContours(newFrame, *contours, -1, BLUE, 1);
