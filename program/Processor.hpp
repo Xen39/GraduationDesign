@@ -49,10 +49,6 @@ namespace program {
         bool recognizeAsNearestContourPoint;
         bool showContours;
         bool showPoints;
-
-        constexpr static int kGaussianBlurSize = 5;
-        constexpr static double kCannyLowerThreshold = 50;
-        constexpr static double kCannyUpperThreshold = 150;
     };
 }
 

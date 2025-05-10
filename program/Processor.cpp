@@ -22,16 +22,24 @@ namespace program {
         clear();
         this->oriMat = mat.clone();
 
-        cv::Mat gray, blurred, edges;
-        // 转为灰度图
+        // 灰度化
+        cv::Mat gray;
         cv::cvtColor(mat, gray, cv::COLOR_BGR2GRAY);
-        // 高斯模糊
-        static_assert(kGaussianBlurSize % 2 == 1, "高斯核大小应为奇数");
-        cv::GaussianBlur(gray, blurred, cv::Size(kGaussianBlurSize, kGaussianBlurSize), 0);
+        // 噪声去除 - 高斯模糊
+        cv::Mat blurred;
+        cv::GaussianBlur(gray, blurred, cv::Size(5, 5), 0);
+        // 噪声去除 - 中值滤波
+        cv::Mat denoised;
+        cv::medianBlur(blurred, denoised, 5);
+        // 图像增强 - 直方图均衡化
+        cv::Mat enhanced;
+        cv::equalizeHist(denoised, enhanced);
+        // 二值化 - 自适应阈值法
+        cv::Mat processed;
+        cv::adaptiveThreshold(enhanced, processed, 255, cv::ADAPTIVE_THRESH_GAUSSIAN_C, cv::THRESH_BINARY, 11, 2);
         // 边缘检测
-        static_assert(2.0 <= kCannyUpperThreshold / kCannyLowerThreshold &&
-                      kCannyUpperThreshold / kCannyLowerThreshold <= 3.0);
-        cv::Canny(blurred, edges, kCannyLowerThreshold, kCannyUpperThreshold);
+        cv::Mat edges;
+        cv::Canny(blurred, edges, 50, 150);
         // 查找轮廓
         vector<cv::Vec4i> hierarchy;
         cv::findContours(edges, *contours, hierarchy, cv::RETR_LIST, cv::CHAIN_APPROX_SIMPLE);
