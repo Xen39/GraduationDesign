@@ -15,15 +15,28 @@
 #include "program/shape/Shape.hpp"
 #include "program/shape/ShapeType.hpp"
 
+namespace {
+    std::vector<cv::Point> findContourByPoint(std::shared_ptr<std::vector<std::vector<cv::Point>>>contours,
+                                              cv::Point targetPoint) {
+        for (const auto& contour: *contours) {
+            for (const auto& point : contour) {
+                if (point == targetPoint)
+                    return contour;
+            }
+        }
+        return {};
+    }
+}
+
 namespace program::shape {
 
     class ShapeFactory {
     public:
         static std::shared_ptr<Shape> build(ShapeType type, std::vector<cv::Point> &points,
-                                            const std::shared_ptr<std::vector<std::vector<cv::Point>>> &contours) {
+                                            std::shared_ptr<std::vector<std::vector<cv::Point>>> contours) {
             size_t numPoints = points.size();
             std::shared_ptr<Shape> shape = nullptr;
-            auto removePoints = [&points](size_t n) {
+            auto removePoints = [&points](int n) {
                 assert(points.size() >= n);
                 points.erase(points.end() - n, points.end());
             };
@@ -53,7 +66,7 @@ namespace program::shape {
                     break;
                 case ShapeType::ContourCurve:
                     if (numPoints >= 1) {
-                        shape = std::make_shared<ContourCurve>(contours, points[numPoints - 1]);
+                        shape = std::make_shared<ContourCurve>(findContourByPoint(contours, points.back()));
                         if (shape != nullptr && !shape->failed())
                             removePoints(1);
                     }

@@ -8,7 +8,7 @@
 namespace program::shape {
     class ContourCurve : public Shape {
     public:
-        ContourCurve(std::shared_ptr<std::vector<std::vector<cv::Point>>> contours, const cv::Point &target);
+        ContourCurve(const std::vector<cv::Point>& contour);
 
         virtual ~ContourCurve() = default;
 
@@ -22,7 +22,6 @@ namespace program::shape {
         void draw(cv::Mat &mat) const override;
 
     private:
-        std::shared_ptr<const std::vector<std::vector<cv::Point>>> contours;
-        int contourIdx;
+        std::vector<cv::Point> contour;
     };
 }
