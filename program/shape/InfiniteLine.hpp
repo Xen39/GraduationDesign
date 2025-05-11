@@ -19,8 +19,6 @@ namespace program::shape {
             return {
                     {"a(ax+by=c)", std::to_string(a)},
                     {"b(ax+by=c)", std::to_string(b)},
-                    {"c(ax+by=c)", std::to_string(c)},
-
             };
         }
 
