@@ -41,7 +41,7 @@ namespace program {
 
         cv::Point toNearestContourPoint(const cv::Point &point);
 
-        std::shared_ptr<std::vector<Contour>> contours;
+        std::vector<Contour> contours;
         std::vector<cv::Point> points;
         program::shape::ShapeContainer shapes;
         cv::Mat oriMat;

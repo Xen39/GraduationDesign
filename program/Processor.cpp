@@ -42,8 +42,8 @@ namespace program {
         cv::Canny(blurred, edges, 50, 150);
         // 查找轮廓
         vector<cv::Vec4i> hierarchy;
-        cv::findContours(edges, *contours, hierarchy, cv::RETR_LIST, cv::CHAIN_APPROX_SIMPLE);
-        CHECK(!contours->empty(), "Processor::Processor() cannot find contour");
+        cv::findContours(edges, contours, hierarchy, cv::RETR_LIST, cv::CHAIN_APPROX_SIMPLE);
+        CHECK(!contours.empty(), "Processor::Processor() cannot find contour");
     }
 
     bool Processor::drawShape(ShapeType type) {
@@ -74,11 +74,11 @@ namespace program {
     }
 
     cv::Point Processor::toNearestContourPoint(cv::Point const &pointFrom) {
-        CHECK(!contours->empty(), "toNearestContourPoint() called without contour");
+        CHECK(!contours.empty(), "toNearestContourPoint() called without contour");
         cv::Point const *nearestPoint = nullptr;
         int minDistSquare = numeric_limits<int>::max();
 
-        for (Contour const &contour: *contours) {
+        for (Contour const &contour: contours) {
             for (cv::Point const &pointTo: contour) {
                 int curDistSquare = distanceSquare(pointFrom, pointTo);
                 if (curDistSquare < minDistSquare) {
@@ -119,7 +119,7 @@ namespace program {
             return newFrame;
         shapes.draw(newFrame);
         if (showContours)
-            cv::drawContours(newFrame, *contours, -1, BLUE, 1);
+            cv::drawContours(newFrame, contours, -1, BLUE, 1);
         if (showPoints) {
             for (const cv::Point &point: points)
                 cv::circle(newFrame, point, 1, RED, 2);
@@ -128,11 +128,7 @@ namespace program {
     }
 
     void Processor::clear() {
-        if (contours == nullptr) {
-            contours = make_shared<vector<Contour>>();
-        } else {
-            contours->clear();
-        }
+        contours.clear();
         points.clear();
         shapes.clear();
     }
