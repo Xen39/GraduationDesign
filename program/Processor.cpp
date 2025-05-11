@@ -43,7 +43,10 @@ namespace program {
         // 查找轮廓
         vector<cv::Vec4i> hierarchy;
         cv::findContours(edges, contours, hierarchy, cv::RETR_LIST, cv::CHAIN_APPROX_SIMPLE);
-        CHECK(!contours.empty(), "Processor::Processor() cannot find contour");
+        this->contours = detectContours(mat);
+        if (contours.empty()) {
+            QWarn("Processor::preprocess() cannot find any contour");
+        }
     }
 
     bool Processor::drawShape(ShapeType type) {
@@ -91,10 +94,15 @@ namespace program {
     }
 
     void Processor::addPoint(cv::Point p) {
-        if (recognizeAsNearestContourPoint)
+        if (recognizeAsNearestContourPoint) {
+            if (contours.empty()) {
+                QWarn("No contours detected!");
+                return;
+            }
             points.push_back(toNearestContourPoint(p));
-        else
+        } else {
             points.push_back(p);
+        }
     }
 
     bool Processor::circleResize() {
