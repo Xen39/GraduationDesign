@@ -22,28 +22,16 @@ namespace program {
         clear();
         this->oriMat = mat.clone();
 
-        // 灰度化
-        cv::Mat gray;
-        cv::cvtColor(mat, gray, cv::COLOR_BGR2GRAY);
-        // 噪声去除 - 高斯模糊
-        cv::Mat blurred;
-        cv::GaussianBlur(gray, blurred, cv::Size(5, 5), 0);
-        // 噪声去除 - 中值滤波
-        cv::Mat denoised;
-        cv::medianBlur(blurred, denoised, 5);
-        // 图像增强 - 直方图均衡化
-        cv::Mat enhanced;
-        cv::equalizeHist(denoised, enhanced);
-        // 二值化 - 自适应阈值法
         cv::Mat processed;
-        cv::adaptiveThreshold(enhanced, processed, 255, cv::ADAPTIVE_THRESH_GAUSSIAN_C, cv::THRESH_BINARY, 11, 2);
+        // 转为灰度图
+        cv::cvtColor(mat, processed, cv::COLOR_BGR2GRAY);
+        // 高斯模糊
+        cv::GaussianBlur(processed, processed, cv::Size(5, 5), 0);
         // 边缘检测
-        cv::Mat edges;
-        cv::Canny(blurred, edges, 50, 150);
-        // 查找轮廓
+        cv::Canny(processed, processed, 50, 150);
         vector<cv::Vec4i> hierarchy;
-        cv::findContours(edges, contours, hierarchy, cv::RETR_LIST, cv::CHAIN_APPROX_SIMPLE);
-        this->contours = detectContours(mat);
+        cv::findContours(processed, contours, hierarchy, cv::RETR_LIST, cv::CHAIN_APPROX_SIMPLE);
+
         if (contours.empty()) {
             QWarn("Processor::preprocess() cannot find any contour");
         }
