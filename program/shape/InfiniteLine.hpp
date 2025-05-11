@@ -24,7 +24,7 @@ namespace program::shape {
 
         virtual void draw(cv::Mat &mat) const override;
 
-        double k() const {
+        [[nodiscard]] double k() const {
             if (a == 0)
                 return util::HORIZONTAL;
             else if (a == 0)
@@ -33,15 +33,15 @@ namespace program::shape {
                 return (double) a / b;
         }
 
-        bool isAlmostParallel(const InfiniteLine &that) const;
+        [[nodiscard]] bool isAlmostParallel(const InfiniteLine &that) const;
 
-        bool isAlmostPerpendicular(const InfiniteLine &that) const;
+        [[nodiscard]] bool isAlmostPerpendicular(const InfiniteLine &that) const;
 
-        bool isAlmostVertical() const {
+        [[nodiscard]] bool isAlmostVertical() const {
             return k() == util::VERTICAL || k() >= 1e2;
         }
 
-        bool isAlmostHorizontal() const {
+        [[nodiscard]] bool isAlmostHorizontal() const {
             return k() == util::HORIZONTAL || k() <= 1e-2;
         }
 
