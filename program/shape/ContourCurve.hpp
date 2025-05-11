@@ -8,7 +8,7 @@
 namespace program::shape {
     class ContourCurve : public Shape {
     public:
-        ContourCurve(const std::vector<cv::Point>& contour);
+        ContourCurve(const std::vector<cv::Point> &contour);
 
         virtual ~ContourCurve() = default;
 

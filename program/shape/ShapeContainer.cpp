@@ -1,7 +1,5 @@
 #include "ShapeContainer.hpp"
 
-#include <limits>
-
 #include "util/util.hpp"
 #include "util/macros.hpp"
 
@@ -86,7 +84,7 @@ namespace program::shape {
     }
 
     void ShapeContainer::dehighlightAll() {
-        for (auto& shape:shapes)
+        for (auto &shape: shapes)
             dehighlight(shape);
     }
 

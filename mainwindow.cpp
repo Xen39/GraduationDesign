@@ -185,8 +185,8 @@ void MainWindow::displayShapeList() {
         oss << "编号 " << ++idx << "    图形 " << iter->shapeName();
         QListWidgetItem *item = new QListWidgetItem(QString::fromStdString(oss.str()), ui->shapeListWidget);
     }
-    static constexpr QColor unselectedColor(255,255,255);
-    static constexpr QColor selectedColor(200,200,200);
+    static constexpr QColor unselectedColor(255, 255, 255);
+    static constexpr QColor selectedColor(200, 200, 200);
     for (int i = 0; i < ui->shapeListWidget->count(); ++i) {
         ui->shapeListWidget->item(i)->setBackground(unselectedColor);
     }

@@ -13,7 +13,7 @@ namespace program::shape {
 
         std::shared_ptr<Shape> curShape();
 
-        [[nodiscard]] auto currentIdx() const { return curIdx;}
+        [[nodiscard]] auto currentIdx() const { return curIdx; }
 
         void addShape(const std::shared_ptr<Shape> &shape);
 

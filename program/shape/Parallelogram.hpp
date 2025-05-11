@@ -15,8 +15,8 @@ namespace program::shape {
 
         virtual std::vector<std::pair<std::string, std::string>> getParamPairs() const override {
             return {
-                    {"长",    std::to_string(util::getRatio() * length)},
-                    {"宽",    std::to_string(util::getRatio() * width)},
+                    {"长", std::to_string(util::getRatio() * length)},
+                    {"宽", std::to_string(util::getRatio() * width)},
             };
         }
 
