@@ -28,7 +28,7 @@ namespace program {
         // 高斯模糊
         cv::GaussianBlur(processed, processed, cv::Size(5, 5), 0);
         // 边缘检测
-        cv::Canny(processed, processed, 50, 150);
+        cv::Canny(processed, processed, 50, 100, 3, true);
         vector<cv::Vec4i> hierarchy;
         cv::findContours(processed, contours, hierarchy, cv::RETR_LIST, cv::CHAIN_APPROX_SIMPLE);
 
