@@ -34,6 +34,10 @@ MainWindow::MainWindow(QWidget *parent)
     displayParis.emplace_back(ui->name5Label, ui->value5Label);
     displayParis.emplace_back(ui->name6Label, ui->value6Label);
     displayParis.emplace_back(ui->name7Label, ui->value7Label);
+    for (auto&[nameLabel, valueLabel]: displayParis) {
+        nameLabel->setStyleSheet("QLabel {font-size: 16px; color: #333; padding: 2px 5px; background-color: #E0E0E0; margin: 7px 5px;}");
+        valueLabel->setStyleSheet("QLabel {font-size: 16px; color: #333; padding: 2px 5px; background-color: #E0E0E0; margin: 7px 5px;}");
+    }
 }
 
 MainWindow::~MainWindow() {

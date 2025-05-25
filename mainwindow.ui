@@ -7,14 +7,14 @@
     <x>0</x>
     <y>0</y>
     <width>1515</width>
-    <height>680</height>
+    <height>738</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-color: #303030; color: white;</string>
+   <string notr="true">background: #F0F0F0;</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <property name="autoFillBackground">
@@ -46,7 +46,13 @@
            </size>
           </property>
           <property name="styleSheet">
-           <string notr="true">background-color: #808080; color:black; border-radius: 10px;</string>
+           <string notr="true">QLabel {
+    font-size: 30px;
+    color: #333;
+	border: solid 1px;
+	border-radius: 5px;
+    background-color: #D0D0D0;
+}</string>
           </property>
           <property name="text">
            <string>拖动图片到此处</string>
@@ -71,7 +77,13 @@
            </size>
           </property>
           <property name="styleSheet">
-           <string notr="true">background-color: #808080; color:black; color:black; border-radius: 10px;</string>
+           <string notr="true">QLabel {
+    font-size: 30px;
+    color: #333;
+	border: solid 1px;
+	border-radius: 5px;
+    background-color: #D0D0D0;
+}</string>
           </property>
           <property name="text">
            <string>结果展示</string>
@@ -89,16 +101,16 @@
          <enum>QLayout::SetDefaultConstraint</enum>
         </property>
         <property name="leftMargin">
-         <number>50</number>
+         <number>30</number>
         </property>
         <property name="topMargin">
-         <number>10</number>
+         <number>0</number>
         </property>
         <property name="rightMargin">
-         <number>50</number>
+         <number>30</number>
         </property>
         <property name="bottomMargin">
-         <number>10</number>
+         <number>0</number>
         </property>
         <property name="spacing">
          <number>0</number>
@@ -106,7 +118,23 @@
         <item row="1" column="1">
          <widget class="QPushButton" name="removeAllPointsButton">
           <property name="styleSheet">
-           <string notr="true">background-color: #c0c0c0; color: black; margin: 5px 50px; height: 18px; border-radius: 3px;</string>
+           <string notr="true">QPushButton {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+QPushButton:hover {
+    background-color: #45a049;
+}</string>
           </property>
           <property name="text">
            <string>清空所有点</string>
@@ -116,9 +144,56 @@
         <item row="0" column="2">
          <widget class="QComboBox" name="shapeComboBox">
           <property name="styleSheet">
-           <string notr="true">QComboBox { background-color: #c0c0c0; color: black; margin: 5px 50px; height: 18px; border-radius: 3px; }
-QComboBox::drop-down { subcontrol-origin: padding; subcontrol-position: right center; border-left-width: 1px; border-left-color: #a0a0a0; border-left-style: solid; }
-QComboBox::down-arrow { width: 15px; height: 15px; }</string>
+           <string notr="true">QComboBox {
+    background-color: #4CAF50;
+    color: white; /* 文字颜色为白色 */
+    border: none; /* 无边框 */
+    font-size: 16px; /* 字体大小和按钮一致 */
+    border-radius: 5px; /* 圆角和按钮一致 */
+    min-width: 100px; /* 设置最小宽度 */
+    padding: 10px 20px;
+	margin: 4px 20px;
+}
+
+QComboBox::drop-down {
+    subcontrol-origin: padding;
+    subcontrol-position: top right;
+    width: 20px;
+    border-left-width: 1px;
+    border-left-color: rgba(255, 255, 255, 0.5); /* 分割线颜色为半透明白色 */
+    border-left-style: solid;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    background-color: #4CAF50;
+}
+
+QComboBox::down-arrow {
+    width: 12px;
+    height: 12px;
+}
+
+QComboBox::down-arrow:on {
+    top: 1px;
+    left: 1px;
+}
+
+QComboBox QAbstractItemView {
+    border: none; /* 无边框 */
+    border-radius: 5px; /* 圆角 */
+    background-color: #4CAF50;
+    selection-background-color: #45a049; /* 选中项背景色，和按钮悬停色保持一致 */
+    color: white; /* 选中项文字颜色 */
+    outline: 0; /* 去掉选中项的虚线框 */
+    width: 30px;
+}
+
+QComboBox:hover {
+    background-color: #45a049; /* 鼠标悬停时背景色，和按钮悬停色保持一致 */
+}
+
+QComboBox:pressed {
+    background-color: #3e8e41; /* 鼠标按下时背景色 */
+}</string>
           </property>
           <item>
            <property name="text">
@@ -170,7 +245,23 @@ QComboBox::down-arrow { width: 15px; height: 15px; }</string>
         <item row="1" column="0">
          <widget class="QPushButton" name="cameraButton">
           <property name="styleSheet">
-           <string notr="true">background-color: #c0c0c0; color: black; margin: 5px 50px; height: 18px; border-radius: 3px;</string>
+           <string notr="true">QPushButton {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+QPushButton:hover {
+    background-color: #45a049;
+}</string>
           </property>
           <property name="text">
            <string>摄像头</string>
@@ -180,7 +271,10 @@ QComboBox::down-arrow { width: 15px; height: 15px; }</string>
         <item row="1" column="3">
          <widget class="QCheckBox" name="showContourCheckBox">
           <property name="styleSheet">
-           <string notr="true">margin: 5px 50px; height: 18px;</string>
+           <string notr="true">margin: 5px 0px 5px 30px;
+font-size: 18px;
+color: black;
+</string>
           </property>
           <property name="text">
            <string>显示轮廓</string>
@@ -190,7 +284,23 @@ QComboBox::down-arrow { width: 15px; height: 15px; }</string>
         <item row="2" column="1">
          <widget class="QPushButton" name="removeCurrentShapeButton">
           <property name="styleSheet">
-           <string notr="true">background-color: #c0c0c0; color: black; margin: 5px 50px; height: 18px; border-radius: 3px;</string>
+           <string notr="true">QPushButton {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+QPushButton:hover {
+    background-color: #45a049;
+}</string>
           </property>
           <property name="text">
            <string>删除当前图形</string>
@@ -200,7 +310,23 @@ QComboBox::down-arrow { width: 15px; height: 15px; }</string>
         <item row="1" column="2">
          <widget class="QPushButton" name="drawButton">
           <property name="styleSheet">
-           <string notr="true">background-color: #c0c0c0; color: black; margin: 5px 50px; height: 18px; border-radius: 3px;</string>
+           <string notr="true">QPushButton {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+QPushButton:hover {
+    background-color: #45a049;
+}</string>
           </property>
           <property name="text">
            <string>绘制图形</string>
@@ -210,7 +336,23 @@ QComboBox::down-arrow { width: 15px; height: 15px; }</string>
         <item row="2" column="2">
          <widget class="QPushButton" name="resizeButton">
           <property name="styleSheet">
-           <string notr="true">background-color: #c0c0c0; color: black; margin: 5px 50px; height: 18px; border-radius: 3px;</string>
+           <string notr="true">QPushButton {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+QPushButton:hover {
+    background-color: #45a049;
+}</string>
           </property>
           <property name="text">
            <string>比例校正(单圆校正)</string>
@@ -220,7 +362,23 @@ QComboBox::down-arrow { width: 15px; height: 15px; }</string>
         <item row="0" column="0">
          <widget class="QPushButton" name="runButton">
           <property name="styleSheet">
-           <string notr="true">background-color: #c0c0c0; color: black; margin: 5px 50px; height: 18px; border-radius: 3px;</string>
+           <string notr="true">QPushButton {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+QPushButton:hover {
+    background-color: #45a049;
+}</string>
           </property>
           <property name="text">
            <string>运行</string>
@@ -232,7 +390,7 @@ QComboBox::down-arrow { width: 15px; height: 15px; }</string>
           <item>
            <widget class="QLabel" name="resizeLabel">
             <property name="styleSheet">
-             <string notr="true">margin-left: 10px; height: 18px;</string>
+             <string notr="true">margin-left: 20px; height: 18px; font-size: 14px; color: black;</string>
             </property>
             <property name="text">
              <string>当前缩放比例:1.0</string>
@@ -242,7 +400,23 @@ QComboBox::down-arrow { width: 15px; height: 15px; }</string>
           <item>
            <widget class="QPushButton" name="resizeDefaultButton">
             <property name="styleSheet">
-             <string notr="true">background-color: #c0c0c0; color: black; margin-right: 20px; height: 18px; border-radius: 3px;</string>
+             <string notr="true">QPushButton {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    margin: 4px 20px 4px 0px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+QPushButton:hover {
+    background-color: #45a049;
+}</string>
             </property>
             <property name="text">
              <string>恢复默认</string>
@@ -254,7 +428,10 @@ QComboBox::down-arrow { width: 15px; height: 15px; }</string>
         <item row="0" column="3">
          <widget class="QCheckBox" name="toNearestContourPointCheckBox">
           <property name="styleSheet">
-           <string notr="true">margin: 5px 50px; height: 18px;</string>
+           <string notr="true">margin: 5px 0px 5px 30px;
+font-size: 18px;
+color: black;
+</string>
           </property>
           <property name="text">
            <string>识别为最近轮廓点</string>
@@ -267,7 +444,10 @@ QComboBox::down-arrow { width: 15px; height: 15px; }</string>
         <item row="2" column="3">
          <widget class="QCheckBox" name="showPointCheckBox">
           <property name="styleSheet">
-           <string notr="true">margin: 5px 50px; height: 18px;</string>
+           <string notr="true">margin: 5px 0px 5px 30px;
+font-size: 18px;
+color: black;
+</string>
           </property>
           <property name="text">
            <string>显示点</string>
@@ -280,7 +460,23 @@ QComboBox::down-arrow { width: 15px; height: 15px; }</string>
         <item row="0" column="1">
          <widget class="QPushButton" name="removeLastPointButton">
           <property name="styleSheet">
-           <string notr="true">background-color: #c0c0c0; color: black; margin: 5px 50px; height: 18px; border-radius: 3px;</string>
+           <string notr="true">QPushButton {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+QPushButton:hover {
+    background-color: #45a049;
+}</string>
           </property>
           <property name="text">
            <string>删除上个点</string>
@@ -306,7 +502,17 @@ QComboBox::down-arrow { width: 15px; height: 15px; }</string>
        </size>
       </property>
       <property name="styleSheet">
-       <string notr="true">background-color: #808080; color:black; border-radius: 10px;</string>
+       <string notr="true">QListWidget {
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+	font-size: 16px;
+}
+
+QListWidget::item:selected {
+    background-color: #2196F3;
+    color: #E0E0F0;
+}</string>
       </property>
       <property name="resizeMode">
        <enum>QListView::Fixed</enum>
