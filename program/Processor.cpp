@@ -115,7 +115,7 @@ namespace program {
             return newFrame;
         shapes.draw(newFrame);
         if (showContours)
-            cv::drawContours(newFrame, contours, -1, BLUE, 1);
+            cv::drawContours(newFrame, contours, -1, YELLOW, 2);
         if (showPoints) {
             for (const cv::Point &point: points)
                 cv::circle(newFrame, point, 1, RED, 2);
